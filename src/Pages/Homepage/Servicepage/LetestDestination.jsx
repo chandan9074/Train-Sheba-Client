@@ -6,8 +6,8 @@ const LetestDestination = () => {
     const sample = [1,2,3,4,5,6]
     return ( 
         <div className="container py-5">
-            <div className="flex justify-between items-center">
-                <h1 className="text-2xl mt-3 border-l-4 border-gray-700 font-bold pl-2 mb-5">Letest Travel Destination</h1>
+            <div className="flex justify-between items-center mb-5">
+                <h1 className="text-2xl mt-3 border-l-4 border-gray-700 font-bold pl-2">Letest Travel Destination</h1>
                 <button class="learn-more">
                     <span aria-hidden="true" class="circle">
                     <span class="icon arrow"></span>
