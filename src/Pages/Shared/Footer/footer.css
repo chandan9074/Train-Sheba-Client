@@ -1,3 +1,43 @@
-.footer-part{
-    
+.footer-part {
+  background-color: #282936;
+}
+
+.subcribe-btn {
+  width: 80px;
+  height: 32px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: white;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 700;
+  position: relative;
+  transition: all 0.5s;
+  z-index: 1;
+}
+
+.subcribe-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background-color: rgb(216, 213, 213);
+  z-index: -1;
+  transition: all 0.5s;
+}
+
+.subcribe-btn:hover::before {
+  width: 100%;
+}
+
+.subcribe-btn:hover {
+  color: black;
+}
+
+.subcribe-btn:active:before {
+  background: #b9b9b9;
 }
