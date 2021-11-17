@@ -4,3 +4,9 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.elipsis-after-6-line {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

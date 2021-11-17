@@ -22,7 +22,7 @@ const Review = () => {
     const sample = [1, 2, 3, 4, 5, 6]
     return ( 
         <div className="bg-gray-100">
-        <div className="container pt-10 pb-20 ">
+        <div className="container pt-16 pb-20 ">
             <div className="flex justify-between items-center mb-5">
                 <h1 className="text-2xl mt-3 border-l-4 border-gray-700 font-bold pl-2">Travellers Feedback</h1>
                 <button class="learn-more">
