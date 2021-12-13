@@ -6,6 +6,7 @@ import {
   Routes
 } from "react-router-dom";
 import Homepage from './Pages/Homepage/Homepage';
+import Ticket from './Pages/Ticketspage/Ticketspart/Ticket';
 
 // import components
 
@@ -16,6 +17,8 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Homepage />}>
+          </Route>
+          <Route exact path="/tickets" element={<Ticket />}>
           </Route>
         </Routes>
       </Router>

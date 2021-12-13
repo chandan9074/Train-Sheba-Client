@@ -2,7 +2,9 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate} from 'react-router-dom';
 
-const Banner = () => {
+import './ticketPage.css';
+
+const TicketBanner = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
 
@@ -13,24 +15,16 @@ const Banner = () => {
     };
 
     return ( 
-        <div className="banner-part flex justify-start items-center">
-            <div className="container flex flex-col md:flex-row justify-between">
-                <div>
-                    <h1 className="text-5xl text-gray-400 font-bold tracking-wider">WELCOME <span className="text-gray-300">TO</span></h1>
-                    <h1 className="text-5xl text-gray-300 font-bold tracking-wider">TRAIN <span className="text-gray-400">SHEBA</span></h1>
-
-                    <div className="text-animate font-semibold italic">Hello Travellers</div> 
-                    <div className="text-animate font-semibold ml-2 italic"> 
-                    <span>Make your journey easy!!</span>
-                    </div>
-                </div>
+        <div className="ticket-banner-part flex justify-start items-center">
+            <div className="container flex flex-col md:flex-row justify-center">
                 <div className="bg-gray-800 bg-opacity-70 py-4 px-5 rounded-md">
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit)} className="">
+                        <div className="flex">
                         <div className="flex items-end">
                             <div className="flex flex-col">
                                 <label htmlFor="" className="text-xl text-white font-medium mb-2">From</label>
                                 <p className="m-0 border-b-2 border-red-700">
-                                    <select  type="text" className="bg-transparent w-48 appearance-none py-1 px-2 outline-none text-gray-300 " {...register("from")} placeholder="From" required>
+                                    <select  type="text" className="bg-transparent w-48 appearance-none py-1 px-2 outline-none text-gray-300" {...register("from")} placeholder="From" required>
                                         <option value="dhaka">Dhaka</option>
                                         <option value="Chittagong">Chittagong</option>
                                         <option value="Barisal">Barisal</option>
@@ -64,7 +58,7 @@ const Banner = () => {
                             </div>
                         </div>
                         <div className="flex items-center mt-3 justify-between">
-                            <div  className="flex flex-col">
+                            <div  className="flex flex-col md:ml-5">
                                 <label htmlFor="" className="text-xl text-white font-medium mb-2">Departure</label>
                                 <p className="m-0 border-b-2 border-red-700">
                                     
@@ -73,7 +67,7 @@ const Banner = () => {
                                     
                                 </p>
                             </div>
-                            <div  className="flex flex-col">
+                            <div  className="flex flex-col md:ml-5">
                                 <label htmlFor="" className="text-xl text-white font-medium mb-2">Return</label>
                                 <p className="m-0 border-b-2 border-red-700">
                                     
@@ -82,7 +76,8 @@ const Banner = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex items-center mt-3 justify-between">
+                        </div>
+                        <div className="flex items-center md:mt-10 justify-center">
                             <div   className="flex flex-col">
                                 <label htmlFor="" className="text-xl text-white font-medium mb-2">Passengers</label>
                                 <p className="m-0 border-b-2 border-red-700">
@@ -92,7 +87,7 @@ const Banner = () => {
                                     
                                 </p>
                             </div>
-                            <div  className="flex flex-col">
+                            <div  className="flex flex-col md:ml-5">
                                 <label htmlFor="" className="text-xl text-white font-medium mb-2">Class</label>
                                 <p className="m-0 border-b-2 border-red-700">
                                     
@@ -106,6 +101,7 @@ const Banner = () => {
                                 </p>
                             </div>
                         </div>
+                        
                         <button type="submit" onClick={console.log("click hoiche")} className="nice mx-auto mt-5">
                             <span><p className="search-ticket"></p></span>
                         </button>
@@ -117,4 +113,4 @@ const Banner = () => {
      );
 }
  
-export default Banner;
+export default TicketBanner;

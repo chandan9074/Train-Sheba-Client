@@ -1,0 +1,7 @@
+.nav-btn,
+.nav-btn:hover,
+.nav-btn:focus,
+.nav-btn:active {
+  text-decoration: none;
+  color: inherit;
+}

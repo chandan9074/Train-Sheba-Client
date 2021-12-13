@@ -9,8 +9,8 @@ const EmargencyContact = () => {
 
     // const onSubmit = data => console.log(data);
     return ( 
-        <div className="  container">
-            <div className="flex justify-evenly -mt-24">
+        <div className="  container md:pt-0">
+            <div className="flex flex-col md:flex-row justify-around md:justify-evenly md:-mt-24">
                 <div className="flex justify-center items-center bg-gray-800  py-5 px-5 ">
                     <i class="fas fa-map-marker-alt text-5xl mr-5 text-gray-300"></i>
                     <div className="border-l-4 border-gray-100 pl-3">

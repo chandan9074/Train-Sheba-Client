@@ -78,6 +78,10 @@
   }
 }
 
+.calander::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+}
+
 @import url("https://fonts.googleapis.com/css?family=Montserrat:600&display=swap");
 .nice {
   /* margin: 0; */
@@ -91,12 +95,12 @@
 .nice span {
   position: relative;
   display: inline-flex;
-  width: 140px;
+  width: 150px;
   height: 40px;
   margin: 0 15px;
   /* perspective: 1000px; */
 }
-.nice span a {
+.nice span .search-ticket {
   font-size: 12px;
   letter-spacing: 1px;
   transform-style: preserve-3d;
@@ -104,12 +108,12 @@
   transition: transform 0.25s;
   font-family: "Montserrat", sans-serif;
 }
-.nice span a:before,
-.nice span a:after {
+.nice span .search-ticket:before,
+.nice span .search-ticket:after {
   position: absolute;
-  content: "BUY NOW";
+  content: "SEARCH TICKETS";
   height: 40px;
-  width: 140px;
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,17 +121,17 @@
   box-sizing: border-box;
   border-radius: 5px;
 }
-.nice span a:before {
+.nice span .search-ticket:before {
   color: #fff;
   background: #000;
   transform: rotateY(0deg) translateZ(12px);
 }
-.nice span a:after {
+.nice span .search-ticket:after {
   color: rgb(248, 30, 6);
   transform: rotateX(90deg) translateZ(12px);
   font-weight: bold;
 }
-.nice span a:hover {
+.nice span .search-ticket:hover {
   transform: translateZ(-12px) rotateX(-90deg);
 }
 
