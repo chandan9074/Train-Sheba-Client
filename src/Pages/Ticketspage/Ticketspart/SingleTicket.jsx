@@ -32,7 +32,7 @@ const SingleTicket = () => {
                     <i class="fas fa-wifi text-sm text-gray-500"></i>
                     <i class="far fa-moon text-sm text-gray-500 mx-2"></i>
                     <i class="fas fa-coffee text-sm text-gray-500 mr-2"></i>
-                    <i class="fas fa-rocket text-sm text-gray-500"></i>
+                    <i class="fas fa-hamburger text-sm text-gray-500"></i>
                 </div>
                 <Link to="" className='buy-now-btn mt-3'>
                     <span>Buy Now</span>

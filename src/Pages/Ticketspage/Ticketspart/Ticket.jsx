@@ -6,6 +6,7 @@ import SingleTicket from './SingleTicket';
 import './ticket.css';
 
 import { Link} from 'react-router-dom';
+import Footer from '../../Shared/Footer/Footer';
 
 
 const Ticket = () => {
@@ -17,12 +18,12 @@ const Ticket = () => {
             <Navigation />
             <TicketBanner />
             <div className="flex overflow-hidden">
-                <Link to="/tickets" className="ticket-switch-left-btn bg-gray-500 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">1</span>TICKETS</Link>
-                <Link to="/passengers" className="ticket-switch-btn bg-gray-800 py-3 ticket-btn  flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">2</span>PASSENGERS</Link>
-                <Link to="" className="ticket-switch-btn bg-gray-800 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">3</span>PAYMENT</Link>
-                <Link to="" className="ticket-switch-right-btn bg-gray-800 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">4</span>VALIDATION</Link>
+                <Link to="" className="cursor-auto ticket-switch-left-btn bg-gray-500 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">1</span>TICKETS</Link>
+                <Link to="" className="cursor-auto ticket-switch-btn bg-gray-800 py-3 ticket-btn  flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">2</span>PASSENGERS</Link>
+                <Link to="" className="cursor-auto ticket-switch-btn bg-gray-800 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">3</span>PAYMENT</Link>
+                <Link to="" className="cursor-auto ticket-switch-right-btn bg-gray-800 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">4</span>VALIDATION</Link>
             </div>
-            <div className='container mb-20'>
+            <div className='container mb-32'>
                 <div className='flex justify-center items-center'>
                     <div className='w-11/12 flex'>
                         <div className='w-1/4 mt-5'>
@@ -71,6 +72,7 @@ const Ticket = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
      );
 }
