@@ -22,3 +22,52 @@
   text-decoration: none;
   color: white;
 }
+
+.buy-now-btn,
+.buy-now-btn:hover,
+.buy-now-btn:focus,
+.buy-now-btn:active {
+  text-decoration: none;
+  color: white;
+}
+
+.buy-now-btn {
+  display: inline-block;
+  border-radius: 4px;
+  /* background-color: #3d405b; */
+  background-color: #dc2626;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px;
+  width: 100px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.buy-now-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buy-now-btn span:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+}
+
+.buy-now-btn:hover span {
+  padding-right: 15px;
+}
+
+.buy-now-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}

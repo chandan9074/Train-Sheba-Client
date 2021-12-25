@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Homepage from './Pages/Homepage/Homepage';
 import Ticket from './Pages/Ticketspage/Ticketspart/Ticket';
-import Passengers from './Pages/Ticketspage/Ticketspart/Passengers';
+import Passengers from './Pages/Ticketspage/Passengerspart/Passengers';
 
 // import components
 
