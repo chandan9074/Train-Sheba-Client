@@ -34,7 +34,7 @@ const SingleTicket = () => {
                     <i class="fas fa-coffee text-sm text-gray-500 mr-2"></i>
                     <i class="fas fa-hamburger text-sm text-gray-500"></i>
                 </div>
-                <Link to="" className='buy-now-btn mt-3'>
+                <Link to="/passengers" className='buy-now-btn mt-3'>
                     <span>Buy Now</span>
                 </Link>
             </div>
