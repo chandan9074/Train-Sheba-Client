@@ -4,11 +4,12 @@ import { useForm } from "react-hook-form";
 
 import Navigation from '../../Shared/Navigation/Navigation';
 import TicketBanner from '../TicketBanner';
+import Footer from '../../Shared/Footer/Footer';
 
 const Passengers = () => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
-    const onSubmit = data =>navigate("");
+    const onSubmit = data =>navigate("/payment");
     return ( 
         <div>
             <Navigation />
@@ -104,17 +105,18 @@ const Passengers = () => {
                                             </div>
                                         </div>
                                     </div>                
-                                    <Link  to="">
+                                    {/* <Link  to=""> */}
                                         <button type='submit' className='buy-now-btn mt-3'>
                                             <span>Buy Now</span>
                                         </button>
-                                    </Link>
+                                    {/* </Link> */}
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 }

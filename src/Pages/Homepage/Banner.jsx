@@ -106,7 +106,7 @@ const Banner = () => {
                                 </p>
                             </div>
                         </div>
-                        <button type="submit" onClick={console.log("click hoiche")} className="nice mx-auto mt-5">
+                        <button type="submit" className="nice mx-auto mt-5">
                             <span><p className="search-ticket"></p></span>
                         </button>
                         {/* <button type="submit">click</button> */}

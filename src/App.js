@@ -8,6 +8,7 @@ import {
 import Homepage from './Pages/Homepage/Homepage';
 import Ticket from './Pages/Ticketspage/Ticketspart/Ticket';
 import Passengers from './Pages/Ticketspage/Passengerspart/Passengers';
+import Payment from './Pages/Ticketspage/Paymentpart/Payment';
 
 // import components
 
@@ -22,6 +23,8 @@ function App() {
           <Route exact path="/tickets" element={<Ticket />}>
           </Route>
           <Route exact path="/passengers" element={<Passengers />}>
+          </Route>
+          <Route exact path="/payment" element={<Payment />}>
           </Route>
         </Routes>
       </Router>
