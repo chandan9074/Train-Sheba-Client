@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Navigation from '../../Shared/Navigation/Navigation';
 import TicketBanner from '../TicketBanner';
 import Footer from '../../Shared/Footer/Footer';
+import './passenger.css';
 
 const Passengers = () => {
     const navigate = useNavigate();
@@ -15,20 +16,20 @@ const Passengers = () => {
             <Navigation />
             <TicketBanner />
             <div className="flex overflow-hidden">
-                <Link to="" className="ticket-switch-left-btn bg-gray-500 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">1</span>TICKETS</Link>
-                <Link to="" className="ticket-switch-btn bg-gray-500 py-3 ticket-btn  flex justify-center items-center"><span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">2</span>PASSENGERS</Link>
-                <Link to="" className="ticket-switch-btn bg-gray-800 py-3 ticket-btn flex justify-center items-center"><span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">3</span>PAYMENT</Link>
-                <Link to="" className="ticket-switch-right-btn bg-gray-800 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm">4</span>VALIDATION</Link>
+                <Link to="" className="ticket-switch-left-btn bg-gray-500 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white"><i class="fas fa-check correct-sign"></i></span>TICKETS</Link>
+                <Link to="" className="ticket-switch-btn bg-gray-500 py-3 ticket-btn  flex justify-center items-center"><span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white font-bold text-sm">2</span>PASSENGERS</Link>
+                <Link to="" className="ticket-switch-btn bg-gray-800 py-3 ticket-btn flex justify-center items-center"><span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white font-bold text-sm">3</span>PAYMENT</Link>
+                <Link to="" className="ticket-switch-right-btn bg-gray-800 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white font-bold text-sm">4</span>VALIDATION</Link>
             </div>
             <div className='container mb-32'>
                 <div className='flex justify-center items-center'>
                     <div className='w-11/12 flex'>
                         <div className='w-1/4 mt-5'>
                             <h3 className='text-2xl'>Ticket</h3>
-                            <div className='border-1 border-gray-200 hover:border-red-600 px-4 py-3 mb-2'>    
+                            <div className='border-1 border-gray-400 hover:border-red-600 px-4 py-3 mb-2 bg-gray-200'>    
                                 <div className='flex flex-col items-center'>
                                     <i class="fas fa-train text-4xl"></i>
-                                    <h4 className='text-lg font-bold text-gray-500'>North Express</h4>
+                                    <h4 className='text-lg font-bold text-gray-600'>North Express</h4>
                                 </div>
                                 <div className='flex justify-between'>
                                     <div>
@@ -58,20 +59,6 @@ const Passengers = () => {
                             </div>
                         </div>
                         <div className='w-3/4 mt-5 ml-5'>
-                            {/* <div className='w-full'>
-                                <div className='flex justify-between'>
-                                    <p className='m-0 font-semibold text-gray-500'>12 tickets found</p>
-                                    <div className='flex'>
-                                        <p className='mb-0 font-semibold text-gray-500 flex items-center cursor-pointer mr-5'><span>Short by time</span><span className='ml-2'><i class="fas fa-sort-down"></i></span></p>
-                                        <p className='m-0 font-semibold text-gray-500 cursor-pointer'><span>Show populer 5 tickets </span><span className='ml-2'><i class="fas fa-sort-down"></i></span></p>
-                                    </div>
-                                </div>
-                            </div> */}
-                            {/* {loop.map(loops=>(
-                                <div className='mt-3'>
-                                    <SingleTicket />
-                                </div>
-                            ))} */}
                             <div>
                                 <h1 className='text-2xl'>Passenger Information</h1>
                                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -106,9 +93,17 @@ const Passengers = () => {
                                         </div>
                                     </div>                
                                     {/* <Link  to=""> */}
-                                        <button type='submit' className='buy-now-btn mt-3'>
-                                            <span>Buy Now</span>
+                                    <div className='flex items-center justify-between mt-3'>
+                                        <Link to="/tickets" className='back-btn'>
+                                            <div className='flex items-center justify-center'>
+                                                <i class="fas fa-angle-double-left left-arrow"></i>
+                                                <span>Back</span>
+                                            </div>
+                                        </Link>
+                                        <button type='submit' className='buy-now-btn'>
+                                            <span>Next</span>
                                         </button>
+                                    </div>
                                     {/* </Link> */}
                                 </form>
                             </div>

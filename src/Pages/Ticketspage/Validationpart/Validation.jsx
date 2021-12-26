@@ -1,23 +1,20 @@
 import React from 'react';
-import { Link , useNavigate} from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import { Link } from 'react-router-dom';
 
 import Navigation from './../../Shared/Navigation/Navigation';
 import TicketBanner from './../TicketBanner';
 
-const Payment = () => {
-    const navigate = useNavigate();
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data =>navigate("/validation");
-    return (
+const Validation = () => {
+    const onSubmit = data =>console.log(data);
+    return ( 
         <div>
             <Navigation />
             <TicketBanner />
             <div className="flex overflow-hidden">
                 <Link to="" className="ticket-switch-left-btn bg-gray-500 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white"><i class="fas fa-check correct-sign"></i></span>TICKETS</Link>
                 <Link to="" className="ticket-switch-btn bg-gray-500 py-3 ticket-btn  flex justify-center items-center"><span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white"><i class="fas fa-check correct-sign"></i></span>PASSENGERS</Link>
-                <Link to="" className="ticket-switch-btn bg-gray-500 py-3 ticket-btn flex justify-center items-center"><span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm font-bold">3</span>PAYMENT</Link>
-                <Link to="" className="ticket-switch-right-btn bg-gray-800 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm font-bold">4</span>VALIDATION</Link>
+                <Link to="" className="ticket-switch-btn bg-gray-500 py-3 ticket-btn flex justify-center items-center"><span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white"><i class="fas fa-check correct-sign"></i></span>PAYMENT</Link>
+                <Link to="" className="ticket-switch-right-btn bg-gray-500 py-3 ticket-btn flex justify-center items-center"> <span className="px-2 py-0.5 mr-2 rounded-full border-2 border-white text-sm font-bold">4</span>VALIDATION</Link>
             </div>
             <div className='container mb-32'>
                 <div className='flex justify-center items-center'>
@@ -58,41 +55,35 @@ const Payment = () => {
                         </div>
                         <div className='w-3/4 mt-5 ml-5'>
                             <div>
-                                <h1 className='text-2xl'>Personal Information</h1>
-                                <form onSubmit={handleSubmit(onSubmit)}>
-                                    <div className=''>
-                                        <div className='flex p-4 border-1 border-gray-200'>
-                                            <div className='w-1/3'>
-                                                <label htmlFor="" className='text-lg font-semibold'>First Name <sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("first_name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your first name' />
-                                            </div>
-                                            <div className='w-1/3 mx-5'>
-                                                <label htmlFor="" className='text-lg font-semibold'>Last Name <sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("last_name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your last name' />
-                                            </div>
-                                            <div className='w-1/3'>
-                                                <label htmlFor="" className='text-lg font-semibold'>Age<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input type="number"  {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your age' />
-                                            </div>
+                                <h1 className='text-2xl'>Passenger Information</h1>
+                                    <div className='flex border-1 border-gray-200 hover:border-red-600'>
+                                        <div className='w-1/3 p-4 border-r border-gray-200'>
+                                            <h3 className='text-lg m-0'>Name</h3>
+                                            <h5 className='text-base'>Chandan Kumar das</h5>
+                                            <h3 className='text-lg m-0'>Age</h3>
+                                            <h5 className='text-base'>23</h5>
+                                            <h3 className='text-lg m-0'>Number of Tickets</h3>
+                                            <h5 className='text-base'>2</h5>
                                         </div>
-                                        <div className='flex p-4 border-1 border-gray-200'>
-                                            <div className='w-1/3'>
-                                                <label htmlFor="" className='text-lg font-semibold'>No of Tickets<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input type="number" {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter number of passenger' />
-                                            </div>
-                                            <div className='w-1/3 mx-5'>
-                                                <label htmlFor="" className='text-lg font-semibold'>NID Number<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your last name' />
-                                            </div>
-                                            <div className='w-1/3'>
-                                                <label htmlFor="" className='text-lg font-semibold'>Date<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input type="text" value="12/12/21" {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded'  />
-                                            </div>
+                                        <div className='w-1/3 p-4 border-r border-gray-200'>
+                                            <h3 className='text-lg m-0'>NID Number</h3>
+                                            <h5 className='text-base'>8800289345</h5>
+                                            <h3 className='text-lg m-0'>Date</h3>
+                                            <h5 className='text-base'>23/12/21</h5>
                                         </div>
-                                    </div>
+                                        <div className='w-1/3 p-4'>
+                                            <h3 className='text-lg m-0'>Total Cost</h3>
+                                            <h5 className='text-2xl text-red-600 font-semibold'>$800</h5>
+                                            <Link to="/passengers" className='buy-now-btn mt-3'>
+                                                <span>Buy Now</span>
+                                            </Link>
+                                            
+                                            <button class="noselect"><span class="text">Delete</span><span class="icon"></span></button>
+                                        </div>
+                                    </div>             
                                     {/* <Link  to=""> */}
                                     <div className='flex items-center justify-between mt-3'>
-                                        <Link to="/passengers" className='back-btn'>
+                                        <Link to="/payment" className='back-btn'>
                                             <div className='flex items-center justify-center'>
                                                 <i class="fas fa-angle-double-left left-arrow"></i>
                                                 <span>Back</span>
@@ -103,7 +94,6 @@ const Payment = () => {
                                         </button>
                                     </div>
                                     {/* </Link> */}
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -113,4 +103,4 @@ const Payment = () => {
      );
 }
  
-export default Payment;
+export default Validation;

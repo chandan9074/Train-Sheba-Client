@@ -29,7 +29,7 @@ const Ticket = () => {
                         <div className='w-1/4 mt-5'>
                             <h3 className='text-2xl'>Recent Tickets</h3>
                             {loop.map(loops=>(
-                            <div className='border-1 border-gray-200 hover:border-red-600 px-4 py-3 mb-2'>    
+                            <div className='border-1 border-gray-400 hover:border-red-600 px-4 py-3 mb-2 bg-gray-200'>    
                                 <div className='flex justify-between'>
                                     <div>
                                         <h5 className='text-lg m-0 font-medium'>New York</h5>
