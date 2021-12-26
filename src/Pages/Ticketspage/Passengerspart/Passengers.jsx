@@ -1,9 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+
 import Navigation from '../../Shared/Navigation/Navigation';
 import TicketBanner from '../TicketBanner';
 
 const Passengers = () => {
+    const navigate = useNavigate();
+    const { register, handleSubmit } = useForm();
+    const onSubmit = data =>navigate("");
     return ( 
         <div>
             <Navigation />
@@ -32,12 +37,13 @@ const Passengers = () => {
                                         <h6 className='text-sm m-0 text-gray-500'>Penn Station, NY</h6>
                                     </div>
                                     <div>
-                                        <h3 className='text-xl font-semibold m-0'>07:30p</h3>
-                                        <h6 className='text-sm m-0 text-gray-500'>Feb 14 SUN</h6>
-                                        <h5 className='text-base m-0'>New York</h5>
-                                        <h6 className='text-sm m-0 text-gray-500'>Penn Station, NY</h6>
+                                        <h3 className='text-xl font-semibold m-0 text-right'>07:30p</h3>
+                                        <h6 className='text-sm m-0 text-gray-500 text-right'>Feb 14 SUN</h6>
+                                        <h5 className='text-base m-0 text-right'>New York</h5>
+                                        <h6 className='text-sm m-0 text-gray-500 text-right'>Penn Station, NY</h6>
                                     </div>
                                 </div>
+                                <hr className='mb-0' />
                                 <div className='flex justify-between items-end'>
                                     <div className='flex'>
                                         <i class="fas fa-wifi text-sm text-gray-500"></i>
@@ -51,7 +57,7 @@ const Passengers = () => {
                             </div>
                         </div>
                         <div className='w-3/4 mt-5 ml-5'>
-                            <div className='w-full'>
+                            {/* <div className='w-full'>
                                 <div className='flex justify-between'>
                                     <p className='m-0 font-semibold text-gray-500'>12 tickets found</p>
                                     <div className='flex'>
@@ -59,12 +65,52 @@ const Passengers = () => {
                                         <p className='m-0 font-semibold text-gray-500 cursor-pointer'><span>Show populer 5 tickets </span><span className='ml-2'><i class="fas fa-sort-down"></i></span></p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             {/* {loop.map(loops=>(
                                 <div className='mt-3'>
                                     <SingleTicket />
                                 </div>
                             ))} */}
+                            <div>
+                                <h1 className='text-2xl'>Passenger Information</h1>
+                                <form onSubmit={handleSubmit(onSubmit)}>
+                                    <div className=''>
+                                        <div className='flex p-4 border-1 border-gray-200'>
+                                            <div className='w-1/3'>
+                                                <label htmlFor="" className='text-lg font-semibold'>First Name <sup className='text-red-700 text-xl'>*</sup></label><br />
+                                                <input {...register("first_name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your first name' />
+                                            </div>
+                                            <div className='w-1/3 mx-5'>
+                                                <label htmlFor="" className='text-lg font-semibold'>Last Name <sup className='text-red-700 text-xl'>*</sup></label><br />
+                                                <input {...register("last_name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your last name' />
+                                            </div>
+                                            <div className='w-1/3'>
+                                                <label htmlFor="" className='text-lg font-semibold'>Age<sup className='text-red-700 text-xl'>*</sup></label><br />
+                                                <input type="number"  {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your age' />
+                                            </div>
+                                        </div>
+                                        <div className='flex p-4 border-1 border-gray-200'>
+                                            <div className='w-1/3'>
+                                                <label htmlFor="" className='text-lg font-semibold'>No of Tickets<sup className='text-red-700 text-xl'>*</sup></label><br />
+                                                <input type="number" {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter number of passenger' />
+                                            </div>
+                                            <div className='w-1/3 mx-5'>
+                                                <label htmlFor="" className='text-lg font-semibold'>NID Number<sup className='text-red-700 text-xl'>*</sup></label><br />
+                                                <input {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your last name' />
+                                            </div>
+                                            <div className='w-1/3'>
+                                                <label htmlFor="" className='text-lg font-semibold'>Date<sup className='text-red-700 text-xl'>*</sup></label><br />
+                                                <input type="text" value="12/12/21" {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded'  />
+                                            </div>
+                                        </div>
+                                    </div>                
+                                    <Link  to="">
+                                        <button type='submit' className='buy-now-btn mt-3'>
+                                            <span>Buy Now</span>
+                                        </button>
+                                    </Link>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
