@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import Navigation from './../../Shared/Navigation/Navigation';
 import TicketBanner from './../TicketBanner';
+import Footer from './../../Shared/Footer/Footer'
+import './validation.css';
 
 const Validation = () => {
     const onSubmit = data =>console.log(data);
@@ -60,27 +62,41 @@ const Validation = () => {
                                         <div className='w-1/3 p-4 border-r border-gray-200'>
                                             <h3 className='text-lg m-0'>Name</h3>
                                             <h5 className='text-base'>Chandan Kumar das</h5>
+                                            <h3 className='text-lg m-0'>Email</h3>
+                                            <h5 className='text-base'>chandanraj9074@gmail.com</h5>
                                             <h3 className='text-lg m-0'>Age</h3>
                                             <h5 className='text-base'>23</h5>
-                                            <h3 className='text-lg m-0'>Number of Tickets</h3>
-                                            <h5 className='text-base'>2</h5>
                                         </div>
                                         <div className='w-1/3 p-4 border-r border-gray-200'>
                                             <h3 className='text-lg m-0'>NID Number</h3>
                                             <h5 className='text-base'>8800289345</h5>
                                             <h3 className='text-lg m-0'>Date</h3>
                                             <h5 className='text-base'>23/12/21</h5>
+                                            <h3 className='text-lg m-0'>Number of Tickets</h3>
+                                            <h5 className='text-base'>2</h5>
                                         </div>
                                         <div className='w-1/3 p-4'>
                                             <h3 className='text-lg m-0'>Total Cost</h3>
-                                            <h5 className='text-2xl text-red-600 font-semibold'>$800</h5>
-                                            <Link to="/passengers" className='buy-now-btn mt-3'>
-                                                <span>Buy Now</span>
-                                            </Link>
-                                            
-                                            <button class="noselect"><span class="text">Delete</span><span class="icon"></span></button>
+                                            <h5 className='text-2xl text-red-600 font-semibold'>$800</h5>                                            
+                                            <Link to="" class="update-btn mt-3"><span class="text">Update</span><span class="icon"><i class="fas fa-pen-fancy"></i></span></Link>
                                         </div>
-                                    </div>             
+                                    </div>
+                                    <h1 className='text-2xl mt-4'>Payment Information</h1>
+                                    <div className='flex border-1 border-gray-200 hover:border-red-600 mt-3'>
+                                        <div className='w-2/3 p-4 border-r border-gray-200'>
+                                            <h3 className='text-lg m-0'>Card Holder Name</h3>
+                                            <h5 className='text-base'>Chandan Kumar das</h5>
+                                            <h3 className='text-lg m-0'>Card Number</h3>
+                                            <h5 className='text-base'>8866 9900 7766</h5>
+                                        </div>
+                                        <div className='w-1/3 p-4'>
+                                            <h3 className='text-lg m-0'>Total Cost</h3>
+                                            <h5 className='text-2xl text-red-600 font-semibold'>$800</h5>                                            
+                                            <button type='submit' className='buy-now-btn'>
+                                                <span>Buy Ticket</span>
+                                            </button>
+                                        </div>
+                                    </div>     
                                     {/* <Link  to=""> */}
                                     <div className='flex items-center justify-between mt-3'>
                                         <Link to="/payment" className='back-btn'>
@@ -99,6 +115,7 @@ const Validation = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
      );
 }

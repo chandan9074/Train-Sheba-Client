@@ -1,0 +1,66 @@
+.update-btn,
+.update-btn:hover,
+.update-btn:focus,
+.update-btn:active {
+  text-decoration: none;
+  color: white;
+}
+
+.update-btn {
+  display: none;
+  width: 100px;
+  height: 35px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: #42ba96;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  background: #42ba96;
+  font-size: 0.8rem;
+}
+
+.update-btn,
+.update-btn span {
+  transition: 200ms;
+}
+
+.update-btn .text {
+  transform: translateX(20px);
+  color: white;
+  font-weight: bold;
+}
+
+.update-btn .icon {
+  position: absolute;
+  border-left: 1px solid #2aa07d;
+  transform: translateX(75px);
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.update-btn:hover {
+  background: #65cfaf;
+}
+
+.update-btn:hover .text {
+  color: transparent;
+}
+
+.update-btn:hover .icon {
+  width: 100px;
+  border-left: none;
+  transform: translateX(0);
+}
+
+.update-btn:focus {
+  outline: none;
+}
+
+.update-btn:active .icon svg {
+  transform: scale(0.8);
+}
