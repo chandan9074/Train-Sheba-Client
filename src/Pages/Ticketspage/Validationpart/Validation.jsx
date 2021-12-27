@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 
 import Navigation from './../../Shared/Navigation/Navigation';
 import TicketBanner from './../TicketBanner';
@@ -8,6 +8,10 @@ import './validation.css';
 
 const Validation = () => {
     const onSubmit = data =>console.log(data);
+    const navigate = useNavigate();
+    const handleBuyTicket = () =>{
+        navigate('/ticketsuccess')
+    }
     return ( 
         <div>
             <Navigation />
@@ -22,7 +26,7 @@ const Validation = () => {
                 <div className='flex justify-center items-center'>
                     <div className='w-11/12 flex'>
                         <div className='w-1/4 mt-5'>
-                            <h3 className='text-2xl'>Ticket</h3>
+                            <h3 className='text-2xl'>Train</h3>
                             <div className='border-1 border-gray-400 hover:border-red-600 px-4 py-3 mb-2 bg-gray-200'>    
                                 <div className='flex flex-col items-center'>
                                     <i class="fas fa-train text-4xl"></i>
@@ -92,7 +96,7 @@ const Validation = () => {
                                         <div className='w-1/3 p-4'>
                                             <h3 className='text-lg m-0'>Total Cost</h3>
                                             <h5 className='text-2xl text-red-600 font-semibold'>$800</h5>                                            
-                                            <button type='submit' className='buy-now-btn'>
+                                            <button onClick={handleBuyTicket} type='submit' className='buy-now-btn'>
                                                 <span>Buy Ticket</span>
                                             </button>
                                         </div>
@@ -105,9 +109,9 @@ const Validation = () => {
                                                 <span>Back</span>
                                             </div>
                                         </Link>
-                                        <button type='submit' className='buy-now-btn'>
+                                        {/* <button type='submit' className='buy-now-btn'>
                                             <span>Next</span>
-                                        </button>
+                                        </button> */}
                                     </div>
                                     {/* </Link> */}
                             </div>

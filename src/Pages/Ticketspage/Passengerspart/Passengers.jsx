@@ -25,7 +25,7 @@ const Passengers = () => {
                 <div className='flex justify-center items-center'>
                     <div className='w-11/12 flex'>
                         <div className='w-1/4 mt-5'>
-                            <h3 className='text-2xl'>Ticket</h3>
+                            <h3 className='text-2xl'>Train</h3>
                             <div className='border-1 border-gray-400 hover:border-red-600 px-4 py-3 mb-2 bg-gray-200'>    
                                 <div className='flex flex-col items-center'>
                                     <i class="fas fa-train text-4xl"></i>
@@ -65,12 +65,12 @@ const Passengers = () => {
                                     <div className=''>
                                         <div className='flex p-4 border-1 border-gray-200'>
                                             <div className='w-1/3'>
-                                                <label htmlFor="" className='text-lg font-semibold'>First Name <sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("first_name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your first name' />
+                                                <label htmlFor="" className='text-lg font-semibold'>Name <sup className='text-red-700 text-xl'>*</sup></label><br />
+                                                <input {...register("name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Name' />
                                             </div>
                                             <div className='w-1/3 mx-5'>
-                                                <label htmlFor="" className='text-lg font-semibold'>Last Name <sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("last_name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your last name' />
+                                                <label htmlFor="" className='text-lg font-semibold'>Email<sup className='text-red-700 text-xl'>*</sup></label><br />
+                                                <input {...register("email")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Email' />
                                             </div>
                                             <div className='w-1/3'>
                                                 <label htmlFor="" className='text-lg font-semibold'>Age<sup className='text-red-700 text-xl'>*</sup></label><br />
