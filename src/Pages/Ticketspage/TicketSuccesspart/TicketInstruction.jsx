@@ -3,7 +3,7 @@ import React from 'react';
 const TicketInstruction = () => {
     return ( 
         <div>
-            <div className="">
+            <div className="bg-gray-100">
                 <div className="container py-5">
                     <div className="flex justify-between items-center mb-5">
                         <h1 className="text-2xl mt-3 border-l-4 border-gray-700 font-bold pl-2">E-Ticket Instructions</h1>
