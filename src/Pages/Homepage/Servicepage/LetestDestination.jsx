@@ -1,9 +1,19 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import SingleLetestDestination from './SingleLetestDestination';
 
 
 const LetestDestination = () => {
-    const sample = [1,2,3,4,5,6]
+    // const sample = [1,2,3,4,5,6]
+    const [destinations, setDestinations] = useState([])
+    useEffect(()=>{
+        fetch("http://localhost:5000/letestdestinations")
+        .then(res=>res.json())
+        .then(data=> {
+            const newArray = data.slice(-6);
+            setDestinations(newArray)
+        })
+    })
+
     return ( 
         <div className="container pt-5 pb-24">
             <div className="flex justify-between items-center mb-5">
@@ -17,7 +27,7 @@ const LetestDestination = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-y-10">
                 {
-                    sample.map(sam => <SingleLetestDestination />)
+                    destinations.map(desti => <SingleLetestDestination desti={desti} />)
                 }
             </div>
         </div>
