@@ -14,26 +14,29 @@ const Ticket = () => {
     const loop = [1, 2, 3, 4]
     const [trains, setTrains] = useState([]);
     // console.log(state)
+
+    useEffect(()=>{
+        if(state){
+            const from = state.from;
+            const to = state.to;
+            const classname = state.class;
     
-    if(state){
-        const from = state.from;
-        const to = state.to;
-        const classname = state.class;
-
-        const bodyData = {from, to, classname};
-
-        fetch("http://localhost:5000/trains", {
-            method: "POST",
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(bodyData)
-        })
-        .then(res=>res.json())
-        .then(res=>{
-            setTrains(res);
-        })
-    }
+            const bodyData = {from, to, classname};
+    
+            fetch("http://localhost:5000/trains", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(bodyData)
+            })
+            .then(res=>res.json())
+            .then(res=>{
+                setTrains(res);
+            })
+        }
+    }, [state])
+    
     
     return ( 
         <div>
