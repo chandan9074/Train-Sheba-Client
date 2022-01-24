@@ -9,9 +9,8 @@ const TicketBanner = () => {
     const navigate = useNavigate();
 
     const onSubmit = data => {
-        console.log("hello chandan")
-        navigate("/tickets", {state: data})
-
+        console.log("hello chandan");
+        navigate("/tickets", {state: data});
     };
 
     return ( 
@@ -24,8 +23,8 @@ const TicketBanner = () => {
                             <div className="flex flex-col">
                                 <label htmlFor="" className="text-xl text-white font-medium mb-2">From</label>
                                 <p className="m-0 border-b-2 border-red-700">
-                                    <select  type="text" className="bg-transparent w-48 appearance-none py-1 px-2 outline-none text-gray-300" {...register("from")} placeholder="From" required>
-                                        <option value="dhaka">Dhaka</option>
+                                    <select type="text" className="bg-transparent w-48 appearance-none py-1 px-2 outline-none text-gray-300" {...register("from")} placeholder="From" required>
+                                        <option value="Dhaka">Dhaka</option>
                                         <option value="Chittagong">Chittagong</option>
                                         <option value="Barisal">Barisal</option>
                                         <option value="Khulna">Khulna</option>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useLocation } from 'react-router';
 import TicketBanner from '../TicketBanner';
 import Navigation from './../../Shared/Navigation/Navigation'
@@ -12,7 +12,29 @@ import Footer from '../../Shared/Footer/Footer';
 const Ticket = () => {
     const {state} = useLocation();
     const loop = [1, 2, 3, 4]
-    console.log(state)
+    const [trains, setTrains] = useState([]);
+    // console.log(state)
+    
+    if(state){
+        const from = state.from;
+        const to = state.to;
+        const classname = state.class;
+
+        const bodyData = {from, to, classname};
+
+        fetch("http://localhost:5000/trains", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(bodyData)
+        })
+        .then(res=>res.json())
+        .then(res=>{
+            setTrains(res);
+        })
+    }
+    
     return ( 
         <div>
             <Navigation />
@@ -56,16 +78,16 @@ const Ticket = () => {
                         <div className='w-3/4 mt-5 ml-5'>
                             <div className='w-full'>
                                 <div className='flex justify-between'>
-                                    <p className='m-0 font-semibold text-gray-500'>12 tickets found</p>
+                                    <p className='m-0 font-semibold text-gray-500'>{trains.length} tickets found</p>
                                     <div className='flex'>
                                         <p className='mb-0 font-semibold text-gray-500 flex items-center cursor-pointer mr-5'><span>Short by time</span><span className='ml-2'><i class="fas fa-sort-down"></i></span></p>
                                         <p className='m-0 font-semibold text-gray-500 cursor-pointer'><span>Show populer 5 tickets </span><span className='ml-2'><i class="fas fa-sort-down"></i></span></p>
                                     </div>
                                 </div>
                             </div>
-                            {loop.map(loops=>(
+                            {trains.map(train=>(
                                 <div className='mt-3'>
-                                    <SingleTicket />
+                                    <SingleTicket train={train} state={state} />
                                 </div>
                             ))}
                         </div>
