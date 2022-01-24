@@ -38,7 +38,8 @@ const SingleTicket = ({train, state}) => {
                     <i class="fas fa-hamburger text-sm text-gray-500"></i>
                 </div>
                 <Link to="/passengers" className='buy-now-btn mt-3'>
-                    <span>Buy Now</span>
+                    {availableSit > state.passengers ?
+                    <span>Buy Now</span>: <span>Not Available</span>}
                 </Link>
             </div>
         </div>

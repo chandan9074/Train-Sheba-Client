@@ -11,11 +11,20 @@ import Footer from '../../Shared/Footer/Footer';
 
 const Ticket = () => {
     const {state} = useLocation();
-    const loop = [1, 2, 3, 4]
+    // const loop = [1, 2, 3, 4]
     const [trains, setTrains] = useState([]);
+    const [recentTickets, setRecentTickets] = useState([]);
     // console.log(state)
 
     useEffect(()=>{
+
+        fetch("http://localhost:5000/trains")
+        .then(res=>res.json())
+        .then(data=> {
+            const newArray = data.slice(-6);
+            setRecentTickets(newArray)
+        })
+
         if(state){
             const from = state.from;
             const to = state.to;
@@ -53,16 +62,16 @@ const Ticket = () => {
                     <div className='w-11/12 flex'>
                         <div className='w-1/4 mt-5'>
                             <h3 className='text-2xl'>Recent Tickets</h3>
-                            {loop.map(loops=>(
+                            {recentTickets.map(tickets=>(
                             <div className='border-1 border-gray-400 hover:border-red-600 px-4 py-3 mb-2 bg-gray-200'>    
                                 <div className='flex justify-between'>
                                     <div>
-                                        <h5 className='text-lg m-0 font-medium'>New York</h5>
-                                        <h6 className='text-sm text-gray-500'>Pann Station, NY</h6>
+                                        <h5 className='text-lg m-0 font-medium'>{tickets.fromDistrict}</h5>
+                                        <h6 className='text-sm text-gray-500'>{tickets.fromStation}</h6>
                                     </div>
                                     <div>
-                                        <h5 className='text-lg m-0 font-medium text-right'>Los Angles</h5>
-                                        <h6 className='text-sm text-gray-500'>Union Station, CA</h6>
+                                        <h5 className='text-lg m-0 font-medium text-right'>{tickets.toDistrict}</h5>
+                                        <h6 className='text-sm text-gray-500 text-right'>{tickets.toStation}</h6>
                                     </div>
                                 </div>
                                 <div className='flex justify-between items-end'>
@@ -72,7 +81,7 @@ const Ticket = () => {
                                         <i class="fas fa-coffee text-sm text-gray-500"></i>
                                     </div>
                                     <div className='flex'>
-                                        <h3 className='m-0'><span className='text-sm text-gray-500'>From</span><span className='text-2xl text-red-600'>$400</span></h3>
+                                        <h3 className='m-0'><span className='text-sm text-gray-500'>From</span><span className='text-2xl text-red-600'>${tickets.price}</span></h3>
                                     </div>
                                 </div>
                             </div>
