@@ -1,9 +1,14 @@
 import React from 'react';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 
 const SingleTicket = ({train, state}) => {
 
     const {_id, classname, fromDistrict, fromStation, toDistrict, toStation, trainName, sit, availableSit, araivelTime, departureTime, travelTime, available, price} = train;
+    const navigate = useNavigate();
+
+    const handleNext = () =>{
+        navigate("/passengers", {state:{train:train, userData:state}});
+    }
 
     return ( 
         <div className='flex border-1 border-gray-200 hover:border-red-600'>
@@ -37,10 +42,10 @@ const SingleTicket = ({train, state}) => {
                     <i class="fas fa-coffee text-sm text-gray-500 mr-2"></i>
                     <i class="fas fa-hamburger text-sm text-gray-500"></i>
                 </div>
-                <Link to="/passengers" className='buy-now-btn mt-3'>
+                <button className='buy-now-btn mt-3' onClick={handleNext} >
                     {availableSit > state.passengers ?
                     <span>Buy Now</span>: <span>Not Available</span>}
-                </Link>
+                </button>
             </div>
         </div>
      );

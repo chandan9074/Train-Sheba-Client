@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link, useNavigate  } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useLocation } from 'react-router';
 
 import Navigation from '../../Shared/Navigation/Navigation';
 import TicketBanner from '../TicketBanner';
@@ -10,7 +11,17 @@ import './passenger.css';
 const Passengers = () => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
-    const onSubmit = data =>navigate("/payment");
+    const {state} = useLocation();
+    console.log("train", state);
+
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+    console.log(today)
+    const onSubmit = data =>navigate("/payment", {state:{passInfo: data, train:state.train, userData: state.userData}});
     return ( 
         <div>
             <Navigation />
@@ -66,29 +77,29 @@ const Passengers = () => {
                                         <div className='flex p-4 border-1 border-gray-200'>
                                             <div className='w-1/3'>
                                                 <label htmlFor="" className='text-lg font-semibold'>Name <sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Name' />
+                                                <input {...register("name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Name' required />
                                             </div>
                                             <div className='w-1/3 mx-5'>
                                                 <label htmlFor="" className='text-lg font-semibold'>Email<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("email")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Email' />
+                                                <input {...register("email")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Email' required />
                                             </div>
                                             <div className='w-1/3'>
                                                 <label htmlFor="" className='text-lg font-semibold'>Age<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input type="number"  {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your age' />
+                                                <input type="number"  {...register("age")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your age' required />
                                             </div>
                                         </div>
                                         <div className='flex p-4 border-1 border-gray-200'>
                                             <div className='w-1/3'>
                                                 <label htmlFor="" className='text-lg font-semibold'>No of Tickets<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input type="number" {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter number of passenger' />
+                                                <input type="number" {...register("ticket")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter number of passenger' value={state.userData.passengers} required />
                                             </div>
                                             <div className='w-1/3 mx-5'>
                                                 <label htmlFor="" className='text-lg font-semibold'>NID Number<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your last name' />
+                                                <input {...register("nid")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your last name' />
                                             </div>
                                             <div className='w-1/3'>
                                                 <label htmlFor="" className='text-lg font-semibold'>Date<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input type="text" value="12/12/21" {...register("example")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded'  />
+                                                <input type="text" value={today} {...register("date")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' required />
                                             </div>
                                         </div>
                                     </div>                
