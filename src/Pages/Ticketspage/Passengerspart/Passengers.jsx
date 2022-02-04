@@ -20,7 +20,6 @@ const Passengers = () => {
     const yyyy = today.getFullYear();
 
     today = mm + '/' + dd + '/' + yyyy;
-    console.log(today)
     const onSubmit = data =>navigate("/payment", {state:{passInfo: data, train:state.train, userData: state.userData}});
     return ( 
         <div>

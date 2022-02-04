@@ -98,7 +98,7 @@ const Payment = () => {
                                         </div>
                                     </div>
                                     {/* <Link  to=""> */}
-                                    <div className='flex items-center justify-between mt-3'>
+                                    {/* <div className='flex items-center justify-between mt-3'>
                                         <Link to="/passengers" className='back-btn'>
                                             <div className='flex items-center justify-center'>
                                                 <i class="fas fa-angle-double-left left-arrow"></i>
@@ -108,13 +108,13 @@ const Payment = () => {
                                         <button type='submit' className='buy-now-btn'>
                                             <span>Next</span>
                                         </button>
-                                    </div>
+                                    </div> */}
                                     {/* </Link> */}
                                 </form>
                                 <div>
                                     <h1 className='text-2xl mt-2'>Payment Information</h1>
                                     <Elements stripe={stripePromise}>
-                                        <CheckoutForm />
+                                        <CheckoutForm state={state} />
                                     </Elements>
                                 </div>
                             </div>

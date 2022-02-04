@@ -1,17 +1,35 @@
 import React from 'react';
 import { Link , useNavigate} from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 import Navigation from './../../Shared/Navigation/Navigation';
 import TicketBanner from './../TicketBanner';
 import Footer from './../../Shared/Footer/Footer'
 import './validation.css';
+import { useState } from 'react';
 
 const Validation = () => {
-    const onSubmit = data =>console.log(data);
+    const [tickeNo, setTicketNo] = useState()
     const navigate = useNavigate();
+    const {state} = useLocation();
+    const parseticket = parseInt(state.userData.passengers);
+    const parseprice = parseInt(state.train.price);
+    const newUpdatePrice = parseprice * parseticket;
+    console.log(parseprice, parseticket);
+    console.log("validation state", state);
+
+    const onSubmit = data =>console.log(data);
     const handleBuyTicket = () =>{
         navigate('/ticketsuccess')
     }
+
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+
+    today = mm + '/' + dd + '/' + yyyy;
+
     return ( 
         <div>
             <Navigation />
@@ -65,37 +83,37 @@ const Validation = () => {
                                     <div className='flex border-1 border-gray-200 hover:border-red-600'>
                                         <div className='w-1/3 p-4 border-r border-gray-200'>
                                             <h3 className='text-lg m-0'>Name</h3>
-                                            <h5 className='text-base'>Chandan Kumar das</h5>
+                                            <h5 className='text-base'>{state.passInfo.name}</h5>
                                             <h3 className='text-lg m-0'>Email</h3>
-                                            <h5 className='text-base'>chandanraj9074@gmail.com</h5>
+                                            <h5 className='text-base'>{state.passInfo.email}</h5>
                                             <h3 className='text-lg m-0'>Age</h3>
-                                            <h5 className='text-base'>23</h5>
+                                            <h5 className='text-base'>{state.passInfo.age}</h5>
                                         </div>
                                         <div className='w-1/3 p-4 border-r border-gray-200'>
                                             <h3 className='text-lg m-0'>NID Number</h3>
-                                            <h5 className='text-base'>8800289345</h5>
+                                            <h5 className='text-base'>{state.passInfo.nid}</h5>
                                             <h3 className='text-lg m-0'>Date</h3>
-                                            <h5 className='text-base'>23/12/21</h5>
+                                            <h5 className='text-base'>{today}</h5>
                                             <h3 className='text-lg m-0'>Number of Tickets</h3>
-                                            <h5 className='text-base'>2</h5>
+                                            <h5 className='text-base'>{state.userData.passengers}</h5>
                                         </div>
                                         <div className='w-1/3 p-4'>
                                             <h3 className='text-lg m-0'>Total Cost</h3>
-                                            <h5 className='text-2xl text-red-600 font-semibold'>$800</h5>                                            
+                                            <h5 className='text-2xl text-red-600 font-semibold'>${newUpdatePrice}</h5>                                            
                                             <Link to="" class="update-btn mt-3"><span class="text">Update</span><span class="icon"><i class="fas fa-pen-fancy"></i></span></Link>
                                         </div>
                                     </div>
                                     <h1 className='text-2xl mt-4'>Payment Information</h1>
                                     <div className='flex border-1 border-gray-200 hover:border-red-600 mt-3'>
                                         <div className='w-2/3 p-4 border-r border-gray-200'>
-                                            <h3 className='text-lg m-0'>Card Holder Name</h3>
-                                            <h5 className='text-base'>Chandan Kumar das</h5>
-                                            <h3 className='text-lg m-0'>Card Number</h3>
-                                            <h5 className='text-base'>8866 9900 7766</h5>
+                                            <h3 className='text-lg m-0'>Card Brand</h3>
+                                            <h5 className='text-base'>{state.paymentMethod.card.brand}</h5>
+                                            <h3 className='text-lg m-0'>Payment ID</h3>
+                                            <h5 className='text-base'>{state.paymentMethod.id}</h5>
                                         </div>
                                         <div className='w-1/3 p-4'>
                                             <h3 className='text-lg m-0'>Total Cost</h3>
-                                            <h5 className='text-2xl text-red-600 font-semibold'>$800</h5>                                            
+                                            <h5 className='text-2xl text-red-600 font-semibold'>${newUpdatePrice}</h5>                                            
                                             <button onClick={handleBuyTicket} type='submit' className='buy-now-btn'>
                                                 <span>Buy Ticket</span>
                                             </button>

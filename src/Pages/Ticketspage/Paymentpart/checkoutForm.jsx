@@ -1,9 +1,15 @@
-import React from 'react';
-import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js"
+import React, { useEffect } from 'react';
+import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
+import { Link, useNavigate } from 'react-router-dom';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({state}) => {
     const stripe = useStripe();
     const elements = useElements();
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        console.log("state data", state);
+    })
 
     const handleSubmitPayment = async (e) =>{
         e.preventDefault();
@@ -28,30 +34,41 @@ const CheckoutForm = () => {
         }
         else {
             console.log("payment method",paymentMethod);
+            navigate("/validation", {state:{ paymentMethod: paymentMethod , passInfo: state.passInfo, train:state.train, userData: state.userData}})
         }
     }
     return (
-        <div className='border-1 border-gray-200 p-4'>
+        <div>
             <form onSubmit={handleSubmitPayment}>
-                <CardElement
-                options={{
-                    style: {
-                    base: {
-                        fontSize: '16px',
-                        color: '#424770',
-                        '::placeholder': {
-                        color: '#aab7c4',
-                        },
-                    },
-                    invalid: {
-                        color: '#9e2146',
-                    },
-                    },
-                }}
-                />
-                <button type='submit' className='buy-now-btn'>
-                    <span>Pay</span>
-                </button>
+                <div  className='border-1 border-gray-200 p-4'>
+                    <CardElement
+                        options={{
+                            style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
+                            },
+                            },
+                        }}
+                    />                                                          
+                </div>
+                <div className='flex items-center justify-between mt-3'>
+                    <Link to="/passengers" className='back-btn'>
+                        <div className='flex items-center justify-center'>
+                            <i class="fas fa-angle-double-left left-arrow"></i>
+                            <span>Back</span>
+                        </div>
+                    </Link>
+                    <button type='submit' className='buy-now-btn'>
+                        <span>Next</span>
+                    </button>
+                </div>
             </form>
         </div> 
     );
