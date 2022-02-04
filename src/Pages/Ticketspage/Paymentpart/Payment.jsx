@@ -1,14 +1,18 @@
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
-import { Link , useNavigate} from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useLocation } from 'react-router';
-
+import { Link, useNavigate } from 'react-router-dom';
 import Navigation from './../../Shared/Navigation/Navigation';
 import TicketBanner from './../TicketBanner';
+import CheckoutForm from './checkoutForm';
+
 
 const Payment = () => {
     const navigate = useNavigate();
     const {state} = useLocation();
+    const stripePromise = loadStripe('pk_test_51KOK6DDwHICDWFJIgFNP5rlR59k5W0DyjfGtaA7V6GTsaaAQCu17l4nkokTFHej5a9U3QCq3PLc62jXO8lW1gHDZ00sVd6tSCV');
     console.log(state)
     const { register, handleSubmit } = useForm();
     const onSubmit = data =>navigate("/validation");
@@ -107,6 +111,12 @@ const Payment = () => {
                                     </div>
                                     {/* </Link> */}
                                 </form>
+                                <div>
+                                    <h1 className='text-2xl mt-2'>Payment Information</h1>
+                                    <Elements stripe={stripePromise}>
+                                        <CheckoutForm />
+                                    </Elements>
+                                </div>
                             </div>
                         </div>
                     </div>
