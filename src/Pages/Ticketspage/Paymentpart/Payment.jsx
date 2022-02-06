@@ -4,6 +4,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { useLocation } from 'react-router';
 import { Link, useNavigate } from 'react-router-dom';
+import Footer from "../../Shared/Footer/Footer";
 import Navigation from './../../Shared/Navigation/Navigation';
 import TicketBanner from './../TicketBanner';
 import CheckoutForm from './checkoutForm';
@@ -102,6 +103,7 @@ const Payment = () => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
      );
 }

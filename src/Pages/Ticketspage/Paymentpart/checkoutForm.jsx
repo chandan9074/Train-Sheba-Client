@@ -79,6 +79,7 @@ const CheckoutForm = ({state}) => {
             else{
                 console.log(paymentIntent);
                 setErromessage("")
+                navigate("/validation", {state:{ paymentMethod: paymentMethod , passInfo: state.passInfo, train:state.train, userData: state.userData}})
             }
     }
     return (

@@ -59,7 +59,7 @@ const Validation = () => {
         //     else{
         //         console.log(paymentIntent);
         //     }
-        // navigate('/ticketsuccess')
+        navigate('/ticketsuccess')
     }
 
     let today = new Date();
@@ -124,7 +124,7 @@ const Validation = () => {
                                             <h3 className='text-lg m-0'>Name</h3>
                                             <h5 className='text-base'>{state.passInfo.name}</h5>
                                             <h3 className='text-lg m-0'>Email</h3>
-                                            <h5 className='text-base'>{state.passInfo.email}</h5>
+                                            <h5 className='text-base break-words'>{state.passInfo.email}</h5>
                                             <h3 className='text-lg m-0'>Age</h3>
                                             <h5 className='text-base'>{state.passInfo.age}</h5>
                                         </div>
@@ -139,7 +139,7 @@ const Validation = () => {
                                         <div className='w-1/3 p-4'>
                                             <h3 className='text-lg m-0'>Total Cost</h3>
                                             <h5 className='text-2xl text-red-600 font-semibold'>${newUpdatePrice}</h5>                                            
-                                            <Link to="" class="update-btn mt-3"><span class="text">Update</span><span class="icon"><i class="fas fa-pen-fancy"></i></span></Link>
+                                            {/* <Link to="" class="update-btn mt-3"><span class="text">Update</span><span class="icon"><i class="fas fa-pen-fancy"></i></span></Link> */}
                                         </div>
                                     </div>
                                     <h1 className='text-2xl mt-4'>Payment Information</h1>
@@ -151,11 +151,9 @@ const Validation = () => {
                                             <h5 className='text-base'>{state.paymentMethod.id}</h5>
                                         </div>
                                         <div className='w-1/3 p-4'>
-                                            <h3 className='text-lg m-0'>Total Cost</h3>
-                                            <h5 className='text-2xl text-red-600 font-semibold'>${newUpdatePrice}</h5>                                            
-                                            <button onClick={handleBuyTicket}type="submit" className='buy-now-btn'>
-                                                <span>Buy Ticket</span>
-                                            </button>
+                                            <h3 className='text-lg m-0'>Payment Status</h3>
+                                            <h5 className='text-base text-green-600 font-semibold'>Successfully paid</h5>                                            
+                                            
                                         </div>
                                     </div>     
                                     {/* <Link  to=""> */}
@@ -166,6 +164,9 @@ const Validation = () => {
                                                 <span>Back</span>
                                             </div>
                                         </Link>
+                                        <button onClick={handleBuyTicket}type="submit" className='buy-now-btn'>
+                                            <span>Done</span>
+                                        </button>
                                         {/* <button type='submit' className='buy-now-btn'>
                                             <span>Next</span>
                                         </button> */}
