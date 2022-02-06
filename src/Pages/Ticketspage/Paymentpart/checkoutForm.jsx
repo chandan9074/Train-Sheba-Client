@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
+import { message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({state}) => {
@@ -7,6 +8,7 @@ const CheckoutForm = ({state}) => {
     const elements = useElements();
     const navigate = useNavigate();
     const [clientsecret, setClientsecret] = useState("");
+    // const [errormessage, setErromessage] = useState("");
     const parseticket = parseInt(state.userData.passengers);
     const parseprice = parseInt(state.train.price);
     const newUpdatePrice = parseprice * parseticket;
@@ -45,10 +47,13 @@ const CheckoutForm = ({state}) => {
         });
 
         if (error) {
-            console.log('[error]', error);
+            // setErromessage(error)
+            alert(error.message);
+            console.log("error message", error)
         }
         else {
             console.log("payment method",paymentMethod);
+            // setErromessage("")
             console.log(card);
             // navigate("/validation", {state:{ paymentMethod: paymentMethod , passInfo: state.passInfo, train:state.train, userData: state.userData}})
         }
@@ -67,10 +72,11 @@ const CheckoutForm = ({state}) => {
             );
 
             if(errorConfirm){
-                console.log(errorConfirm.message)
+                message.error(errorConfirm.message);
             }
             else{
                 console.log(paymentIntent);
+                // setErromessage("")
             }
     }
     return (

@@ -8,12 +8,12 @@ import Footer from './../../Shared/Footer/Footer'
 import './validation.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useStripe } from '@stripe/react-stripe-js';
+// import { useStripe } from '@stripe/react-stripe-js';
 
 const Validation = () => {
     const [tickeNo, setTicketNo] = useState();
     // const [clientsecret, setClientsecret] = useState("");
-    const stripe = useStripe();
+    // const stripe = useStripe();
     const navigate = useNavigate();
     const {state} = useLocation();
     const parseticket = parseInt(state.userData.passengers);

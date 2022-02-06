@@ -15,6 +15,9 @@ const Payment = () => {
     const stripePromise = loadStripe('pk_test_51KOK6DDwHICDWFJIgFNP5rlR59k5W0DyjfGtaA7V6GTsaaAQCu17l4nkokTFHej5a9U3QCq3PLc62jXO8lW1gHDZ00sVd6tSCV');
     console.log(state)
     const { register, handleSubmit } = useForm();
+    const parseticket = parseInt(state.userData.passengers);
+    const parseprice = parseInt(state.train.price);
+    const newUpdatePrice = parseprice * parseticket;
     return (
         <div>
             <Navigation />
@@ -65,51 +68,29 @@ const Payment = () => {
                         <div className='w-3/4 mt-5 ml-5'>
                             <div>
                                 <h1 className='text-2xl'>Personal Information</h1>
-                                <form >
-                                    <div className=''>
-                                        <div className='flex p-4 border-1 border-gray-200'>
-                                            <div className='w-1/3'>
-                                                <label htmlFor="" className='text-lg font-semibold'>Name<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("name")} value={state.passInfo.name} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Name' />
-                                            </div>
-                                            <div className='w-1/3 mx-5'>
-                                                <label htmlFor="" className='text-lg font-semibold'>Email<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("email")} value={state.passInfo.email} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Email' />
-                                            </div>
-                                            <div className='w-1/3'>
-                                                <label htmlFor="" className='text-lg font-semibold'>Age<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input type="number"  {...register("age")} value={state.passInfo.age} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your age' />
-                                            </div>
+                                <div className='flex border-1 border-gray-200 hover:border-red-600'>
+                                        <div className='w-1/3 p-4 border-r border-gray-200'>
+                                            <h3 className='text-lg m-0'>Name</h3>
+                                            <h5 className='text-base'>{state.passInfo.name}</h5>
+                                            <h3 className='text-lg m-0'>Email</h3>
+                                            <h5 className='text-base'>{state.passInfo.email}</h5>
+                                            <h3 className='text-lg m-0'>Age</h3>
+                                            <h5 className='text-base'>{state.passInfo.age}</h5>
                                         </div>
-                                        <div className='flex p-4 border-1 border-gray-200'>
-                                            <div className='w-1/3'>
-                                                <label htmlFor="" className='text-lg font-semibold'>No of Tickets<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input type="number" {...register("ticket")} value={state.passInfo.ticket} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter number of passenger' />
-                                            </div>
-                                            <div className='w-1/3 mx-5'>
-                                                <label htmlFor="" className='text-lg font-semibold'>NID Number<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("nid")} value={state.passInfo.nid} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter your last name' />
-                                            </div>
-                                            <div className='w-1/3'>
-                                                <label htmlFor="" className='text-lg font-semibold'>Date<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input type="text" value={state.passInfo.date} {...register("date")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded'  />
-                                            </div>
+                                        <div className='w-1/3 p-4 border-r border-gray-200'>
+                                            <h3 className='text-lg m-0'>NID Number</h3>
+                                            <h5 className='text-base'>{state.passInfo.nid}</h5>
+                                            <h3 className='text-lg m-0'>Date</h3>
+                                            <h5 className='text-base'>{state.passInfo.date}</h5>
+                                            <h3 className='text-lg m-0'>Number of Tickets</h3>
+                                            <h5 className='text-base'>{state.userData.passengers}</h5>
+                                        </div>
+                                        <div className='w-1/3 p-4'>
+                                            <h3 className='text-lg m-0'>Total Cost</h3>
+                                            <h5 className='text-2xl text-red-600 font-semibold'>${newUpdatePrice}</h5>                                            
+                                            <Link to="" class="update-btn mt-3"><span class="text">Update</span><span class="icon"><i class="fas fa-pen-fancy"></i></span></Link>
                                         </div>
                                     </div>
-                                    {/* <Link  to=""> */}
-                                    {/* <div className='flex items-center justify-between mt-3'>
-                                        <Link to="/passengers" className='back-btn'>
-                                            <div className='flex items-center justify-center'>
-                                                <i class="fas fa-angle-double-left left-arrow"></i>
-                                                <span>Back</span>
-                                            </div>
-                                        </Link>
-                                        <button type='submit' className='buy-now-btn'>
-                                            <span>Next</span>
-                                        </button>
-                                    </div> */}
-                                    {/* </Link> */}
-                                </form>
                                 <div>
                                     <h1 className='text-2xl mt-2'>Payment Information</h1>
                                     <Elements stripe={stripePromise}>
