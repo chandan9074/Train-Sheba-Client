@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
-import { message } from 'antd';
+// import { message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
+import Message from "../../Shared/Message/Message";
 
 const CheckoutForm = ({state}) => {
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();
     const [clientsecret, setClientsecret] = useState("");
-    // const [errormessage, setErromessage] = useState("");
+    const [errormessage, setErromessage] = useState("");
     const parseticket = parseInt(state.userData.passengers);
     const parseprice = parseInt(state.train.price);
     const newUpdatePrice = parseprice * parseticket;
@@ -47,13 +48,13 @@ const CheckoutForm = ({state}) => {
         });
 
         if (error) {
-            // setErromessage(error)
-            alert(error.message);
+            setErromessage(error.message)
+            // message.error(error.message);
             console.log("error message", error)
         }
         else {
             console.log("payment method",paymentMethod);
-            // setErromessage("")
+            setErromessage("")
             console.log(card);
             // navigate("/validation", {state:{ paymentMethod: paymentMethod , passInfo: state.passInfo, train:state.train, userData: state.userData}})
         }
@@ -72,11 +73,12 @@ const CheckoutForm = ({state}) => {
             );
 
             if(errorConfirm){
-                message.error(errorConfirm.message);
+                // message.error(errorConfirm.message);
+                setErromessage(error.message)
             }
             else{
                 console.log(paymentIntent);
-                // setErromessage("")
+                setErromessage("")
             }
     }
     return (
@@ -99,6 +101,9 @@ const CheckoutForm = ({state}) => {
                             },
                         }}
                     />                                                          
+                </div>
+                <div className='flex justify-center mt-3'>
+                   { errormessage && <Message errormessage={errormessage} />}
                 </div>
                 <div className='flex items-center justify-between mt-3'>
                     <Link to="/passengers" className='back-btn'>
