@@ -7,20 +7,59 @@ import TicketBanner from './../TicketBanner';
 import Footer from './../../Shared/Footer/Footer'
 import './validation.css';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { useStripe } from '@stripe/react-stripe-js';
 
 const Validation = () => {
-    const [tickeNo, setTicketNo] = useState()
+    const [tickeNo, setTicketNo] = useState();
+    // const [clientsecret, setClientsecret] = useState("");
+    const stripe = useStripe();
     const navigate = useNavigate();
     const {state} = useLocation();
     const parseticket = parseInt(state.userData.passengers);
     const parseprice = parseInt(state.train.price);
     const newUpdatePrice = parseprice * parseticket;
-    console.log(parseprice, parseticket);
+    // console.log(parseprice, parseticket);
     console.log("validation state", state);
 
+    // useEffect(()=>{
+    //     fetch("http://localhost:5000/create-payment-intent", {
+    //         method:"POST",
+    //         headers:{
+    //             'content-type': 'application/json'
+    //         },
+    //         body: JSON.stringify({newUpdatePrice})
+    //     })
+    //     .then(res => res.json())
+    //     .then(data =>{
+    //         setClientsecret(data.clientSecret)
+    //         // console.log("client",data.clientSecret);
+    //     })
+    // }, [state.train.peice]);
+
     const onSubmit = data =>console.log(data);
-    const handleBuyTicket = () =>{
-        navigate('/ticketsuccess')
+    const handleBuyTicket = async () =>{
+        // console.log(clientsecret);
+        // const {paymentIntent, error} = await stripe.confirmCardPayment(
+        //     clientsecret,
+        //     {
+        //         payment_method: {
+        //         card: state.card,
+        //         billing_details: {
+        //             name: state.passInfo.name,
+        //             email: state.passInfo.email
+        //         },
+        //         },
+        //     },
+        //     );
+
+        //     if(error){
+        //         console.log(error.message)
+        //     }
+        //     else{
+        //         console.log(paymentIntent);
+        //     }
+        // navigate('/ticketsuccess')
     }
 
     let today = new Date();
@@ -114,7 +153,7 @@ const Validation = () => {
                                         <div className='w-1/3 p-4'>
                                             <h3 className='text-lg m-0'>Total Cost</h3>
                                             <h5 className='text-2xl text-red-600 font-semibold'>${newUpdatePrice}</h5>                                            
-                                            <button onClick={handleBuyTicket} type='submit' className='buy-now-btn'>
+                                            <button onClick={handleBuyTicket}type="submit" className='buy-now-btn'>
                                                 <span>Buy Ticket</span>
                                             </button>
                                         </div>

@@ -15,7 +15,6 @@ const Payment = () => {
     const stripePromise = loadStripe('pk_test_51KOK6DDwHICDWFJIgFNP5rlR59k5W0DyjfGtaA7V6GTsaaAQCu17l4nkokTFHej5a9U3QCq3PLc62jXO8lW1gHDZ00sVd6tSCV');
     console.log(state)
     const { register, handleSubmit } = useForm();
-    const onSubmit = data =>navigate("/validation");
     return (
         <div>
             <Navigation />
@@ -66,7 +65,7 @@ const Payment = () => {
                         <div className='w-3/4 mt-5 ml-5'>
                             <div>
                                 <h1 className='text-2xl'>Personal Information</h1>
-                                <form onSubmit={handleSubmit(onSubmit)}>
+                                <form >
                                     <div className=''>
                                         <div className='flex p-4 border-1 border-gray-200'>
                                             <div className='w-1/3'>

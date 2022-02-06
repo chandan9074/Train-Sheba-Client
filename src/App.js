@@ -5,6 +5,8 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from '@stripe/stripe-js';
 import Homepage from './Pages/Homepage/Homepage';
 import Ticket from './Pages/Ticketspage/Ticketspart/Ticket';
 import Passengers from './Pages/Ticketspage/Passengerspart/Passengers';
@@ -15,6 +17,7 @@ import TicketSuccess from './Pages/Ticketspage/TicketSuccesspart/TicketSuccess';
 // import components
 
 function App() {
+  const stripePromise = loadStripe('pk_test_51KOK6DDwHICDWFJIgFNP5rlR59k5W0DyjfGtaA7V6GTsaaAQCu17l4nkokTFHej5a9U3QCq3PLc62jXO8lW1gHDZ00sVd6tSCV');
   return (
     <div className="App">
       {/* crate router  */}
@@ -28,7 +31,12 @@ function App() {
           </Route>
           <Route exact path="/payment" element={<Payment />}>
           </Route>
-          <Route exact path="/validation" element={<Validation />}>
+          
+          <Route exact path="/validation" element={
+            <Elements stripe={stripePromise}>
+              <Validation />
+            </Elements>
+          }>
           </Route>
           <Route exact path="/ticketsuccess" element={<TicketSuccess />}>
           </Route>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -6,10 +6,25 @@ const CheckoutForm = ({state}) => {
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();
+    const [clientsecret, setClientsecret] = useState("");
+    const parseticket = parseInt(state.userData.passengers);
+    const parseprice = parseInt(state.train.price);
+    const newUpdatePrice = parseprice * parseticket;
 
     useEffect(()=>{
-        console.log("state data", state);
-    })
+        fetch("http://localhost:5000/create-payment-intent", {
+            method:"POST",
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({newUpdatePrice})
+        })
+        .then(res => res.json())
+        .then(data =>{
+            setClientsecret(data.clientSecret)
+            console.log("client",data.clientSecret);
+        })
+    }, [state.train.peice]);
 
     const handleSubmitPayment = async (e) =>{
         e.preventDefault();
@@ -34,8 +49,29 @@ const CheckoutForm = ({state}) => {
         }
         else {
             console.log("payment method",paymentMethod);
-            navigate("/validation", {state:{ paymentMethod: paymentMethod , passInfo: state.passInfo, train:state.train, userData: state.userData}})
+            console.log(card);
+            // navigate("/validation", {state:{ paymentMethod: paymentMethod , passInfo: state.passInfo, train:state.train, userData: state.userData}})
         }
+
+        const {paymentIntent, error:errorConfirm} = await stripe.confirmCardPayment(
+            clientsecret,
+            {
+                payment_method: {
+                card: card,
+                billing_details: {
+                    name: state.passInfo.name,
+                    email: state.passInfo.email
+                },
+                },
+            },
+            );
+
+            if(errorConfirm){
+                console.log(errorConfirm.message)
+            }
+            else{
+                console.log(paymentIntent);
+            }
     }
     return (
         <div>
