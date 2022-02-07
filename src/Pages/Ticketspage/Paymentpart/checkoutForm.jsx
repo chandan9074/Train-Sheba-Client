@@ -14,6 +14,10 @@ const CheckoutForm = ({state}) => {
     const parseprice = parseInt(state.train.price);
     const newUpdatePrice = parseprice * parseticket;
 
+    const handleBack = ()=>{
+        navigate("/passengers", {state:state});
+    }
+
     useEffect(()=>{
         fetch("http://localhost:5000/create-payment-intent", {
             method:"POST",
@@ -107,12 +111,12 @@ const CheckoutForm = ({state}) => {
                    { errormessage && <Message errormessage={errormessage} />}
                 </div>
                 <div className='flex items-center justify-between mt-3'>
-                    <Link to="/passengers" className='back-btn'>
+                    <button onClick={handleBack} className='back-btn'>
                         <div className='flex items-center justify-center'>
                             <i class="fas fa-angle-double-left left-arrow"></i>
                             <span>Back</span>
                         </div>
-                    </Link>
+                    </button>
                     <button type='submit' className='buy-now-btn'>
                         <span>Next</span>
                     </button>

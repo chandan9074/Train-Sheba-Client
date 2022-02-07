@@ -23,44 +23,13 @@ const Validation = () => {
     // console.log(parseprice, parseticket);
     console.log("validation state", state);
 
-    // useEffect(()=>{
-    //     fetch("http://localhost:5000/create-payment-intent", {
-    //         method:"POST",
-    //         headers:{
-    //             'content-type': 'application/json'
-    //         },
-    //         body: JSON.stringify({newUpdatePrice})
-    //     })
-    //     .then(res => res.json())
-    //     .then(data =>{
-    //         setClientsecret(data.clientSecret)
-    //         // console.log("client",data.clientSecret);
-    //     })
-    // }, [state.train.peice]);
-
-    const onSubmit = data =>console.log(data);
+    // const onSubmit = data =>console.log(data);
     const handleBuyTicket = async () =>{
-        // console.log(clientsecret);
-        // const {paymentIntent, error} = await stripe.confirmCardPayment(
-        //     clientsecret,
-        //     {
-        //         payment_method: {
-        //         card: state.card,
-        //         billing_details: {
-        //             name: state.passInfo.name,
-        //             email: state.passInfo.email
-        //         },
-        //         },
-        //     },
-        //     );
-
-        //     if(error){
-        //         console.log(error.message)
-        //     }
-        //     else{
-        //         console.log(paymentIntent);
-        //     }
         navigate('/ticketsuccess')
+    }
+
+    const handleBack = ()=>{
+        navigate("/payment", {state:state});
     }
 
     let today = new Date();
@@ -129,12 +98,12 @@ const Validation = () => {
                                     </div>     
                                     {/* <Link  to=""> */}
                                     <div className='flex items-center justify-between mt-3'>
-                                        <Link to="/payment" className='back-btn'>
+                                        <button onClick={handleBack} className='back-btn'>
                                             <div className='flex items-center justify-center'>
                                                 <i class="fas fa-angle-double-left left-arrow"></i>
                                                 <span>Back</span>
                                             </div>
-                                        </Link>
+                                        </button>
                                         <button onClick={handleBuyTicket}type="submit" className='buy-now-btn'>
                                             <span>Done</span>
                                         </button>

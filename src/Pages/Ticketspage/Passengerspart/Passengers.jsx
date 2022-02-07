@@ -19,8 +19,12 @@ const Passengers = () => {
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     const yyyy = today.getFullYear();
-
     today = mm + '/' + dd + '/' + yyyy;
+
+    const handleBack = ()=>{
+        navigate("/tickets", {state:state});
+    }
+
     const onSubmit = data =>navigate("/payment", {state:{passInfo: data, train:state.train, userData: state.userData}});
     return ( 
         <div>
@@ -75,12 +79,12 @@ const Passengers = () => {
                                     </div>                
                                     {/* <Link  to=""> */}
                                     <div className='flex items-center justify-between mt-3'>
-                                        <Link to="/tickets" className='back-btn'>
+                                        <button onClick={handleBack} className='back-btn'>
                                             <div className='flex items-center justify-center'>
                                                 <i class="fas fa-angle-double-left left-arrow"></i>
                                                 <span>Back</span>
                                             </div>
-                                        </Link>
+                                        </button>
                                         <button type='submit' className='buy-now-btn'>
                                             <span>Next</span>
                                         </button>
