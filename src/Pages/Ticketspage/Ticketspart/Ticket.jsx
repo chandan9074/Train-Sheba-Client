@@ -23,6 +23,7 @@ const Ticket = () => {
         .then(data=> {
             const newArray = data.slice(-6);
             setRecentTickets(newArray)
+            // setTrains(newArray);
         })
 
         if(state){
