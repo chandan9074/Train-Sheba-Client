@@ -23,11 +23,11 @@ const Login = () => {
                         <p className='text-center font-bold mt-4 mb-3'>--------------- or --------------- </p>
                         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
                             <label className='text-lg font-semibold mb-1' >Email</label>
-                            <input type="text"  {...register("email")} className="p-3 border-2 border-blue-300 mb-3" placeholder='abc@xyz.com' />
+                            <input type="text"  {...register("email", {required: true})} className="p-3 border-2 border-blue-300 mb-3" placeholder='abc@xyz.com' />
                             <label className='text-lg font-semibold mb-1' >Password</label>
-                            <input type="password" {...register("password")} className="p-3 border-2 border-blue-300" placeholder='xxxxxxxx' />
+                            <input type="password" {...register("password", {required: true})} className="p-3 border-2 border-blue-300" placeholder='xxxxxxxx' />
                             <div className='flex justify-between mt-2'>
-                                <p className='text-sm font-semibold'>Don't have any account?<span>Register</span></p>
+                                <p className='text-sm font-semibold'>Don't have any account?<span className='ml-1'>Register</span></p>
                                 <p className='text-sm font-semibold'>Forget password?</p>
                             </div>
                             <div class="main_div mt-4 mx-auto">
