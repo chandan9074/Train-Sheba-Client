@@ -13,6 +13,8 @@ import Passengers from './Pages/Ticketspage/Passengerspart/Passengers';
 import Payment from './Pages/Ticketspage/Paymentpart/Payment';
 import Validation from './Pages/Ticketspage/Validationpart/Validation';
 import TicketSuccess from './Pages/Ticketspage/TicketSuccesspart/TicketSuccess';
+import Login from './Pages/Accountspage/Login/Login';
+import Registration from './Pages/Accountspage/Registration/Registration';
 
 // import components
 
@@ -30,6 +32,10 @@ function App() {
           <Route exact path="/passengers" element={<Passengers />}>
           </Route>
           <Route exact path="/payment" element={<Payment />}>
+          </Route>
+          <Route exact path="/login" element={<Login />}>
+          </Route>
+          <Route exact path="/registration" element={<Registration />}>
           </Route>
           
           <Route exact path="/validation" element={
