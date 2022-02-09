@@ -1,9 +1,10 @@
 import React from 'react';
+import Navigation from '../../Shared/Navigation/Navigation';
 
 const Registration = () => {
     return ( 
         <div>
-            login
+            <Navigation />
         </div>
      );
 }
