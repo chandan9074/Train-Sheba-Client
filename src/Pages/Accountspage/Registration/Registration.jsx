@@ -8,7 +8,7 @@ import '.././accounts.css';
 
 const Registration = () => {
     const [verifyPassword, setVerifyPassword] = useState();
-    const {setEmail,setName, setPassword, createSingInWithEmail, error, password, setError} = useAuth();
+    const {setEmail,setName, setPassword, createSingInWithEmail, error, password, setError, googleSignIn} = useAuth();
 
     const handleName = (e) =>{
         setName(e.target.value);
@@ -44,7 +44,7 @@ const Registration = () => {
                         <h1 className='text-2xl font-semibold text-gray-500'>Welcome to our website</h1>
                         <p className='text-sm font-semibold border-l-4 border-gray-700 pl-2'>Register for grabbing all kinds of facilities</p>
                         <div class="main_div mt-5 mx-auto">
-                            <button><i class="fab fa-google mr-1 text-red-400"></i> Sign in with Google</button>
+                            <button onClick={googleSignIn}><i class="fab fa-google mr-1 text-red-400"></i> Sign in with Google</button>
                         </div>
                         <p className='text-center font-bold mt-4 mb-3'>--------------- or --------------- </p>
                         <form onSubmit={handleSubmit} className="flex flex-col">
