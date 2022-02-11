@@ -5,9 +5,11 @@ import {
 } from "react-router-dom";
 
 import './navigation.css';
+import useAuth from '../../../hooks/useAuth';
 
 
 const Navigation = () => {
+  const {user, logout} = useAuth();
     return (  
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
@@ -20,19 +22,26 @@ const Navigation = () => {
             <Nav.Link href=""><Link to="/tickets" className="nav-btn">Booking</Link></Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link>
-              <Link to="/login" className='accounts-btn'>
+            <Nav  className="md:flex items-center">
+              {user.email?<>
+              {user.photoURL? <Nav.Link><img src={user.photoURL} alt="" className="w-10 rounded-full" /></Nav.Link>:<i class="fas fa-user"></i>}</>:null}
+              <Nav.Link className="text-lg text-black">{user.displayName}</Nav.Link>
+              {user.email?
+              <Nav.Link>
+              <Link to="/" onClick={logout} className='accounts-btn'>
+                <span>Logout</span>
+              </Link>
+              </Nav.Link>:
+              <Nav.Link>
+              <Link to="/login" className='accounts-btn mr-3'>
                 <span>Login</span>
               </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/registration" className='accounts-btn'>
-                <span>Registration</span>
-              </Link>
-            </Nav.Link>
-            {/* <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link> */}
+                <Link to="/registration" className='accounts-btn'>
+                  <span>Registration</span>
+                </Link>
+              </Nav.Link>
+              }
+            </Nav>
           </Nav>
         </Navbar.Collapse>
         </Container>
