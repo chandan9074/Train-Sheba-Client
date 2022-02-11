@@ -54,3 +54,10 @@
   cursor: pointer;
   font-family: inherit;
 }
+.log-reg-switch-btn,
+.log-reg-switch-btn:hover,
+.log-reg-switch-btn:focus,
+.log-reg-switch-btn:active {
+  text-decoration: underline;
+  color: rgb(226, 66, 8);
+}

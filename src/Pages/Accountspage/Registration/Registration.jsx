@@ -4,7 +4,9 @@ import Footer from '../../Shared/Footer/Footer';
 import Message from '../../Shared/Message/Message';
 import Navigation from '../../Shared/Navigation/Navigation';
 import '.././accounts.css';
-
+import {
+  Link
+} from "react-router-dom";
 
 const Registration = () => {
     const [verifyPassword, setVerifyPassword] = useState();
@@ -57,7 +59,7 @@ const Registration = () => {
                             <label className='text-lg font-semibold mb-1' >Confirm Password</label>
                             <input type="password" name="verifyPassword" required className="p-3 border-2 border-blue-300 outline-none" onChange={handleVarifyPass} placeholder='xxxxxxxx' />
                             <div className='flex justify-between mt-2'>
-                                <p className='text-sm font-semibold'>Already have an account?<span className='ml-1'>Login</span></p>
+                                <p className='text-sm font-semibold'>Already have an account?<Link to="/login" className='ml-1 text-red-600 cursor-pointer log-reg-switch-btn' >Login</Link></p>
                             </div>
                             <div className='mx-auto' >
                                 {error && <Message errormessage={error} />}

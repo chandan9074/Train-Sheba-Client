@@ -1,11 +1,13 @@
 import React from 'react';
-import Navigation from '../../Shared/Navigation/Navigation';
-import Footer from '../../Shared/Footer/Footer'
-import '.././accounts.css';
 import useAuth from '../../../hooks/useAuth';
-
-import { useForm } from "react-hook-form";
+import Footer from '../../Shared/Footer/Footer';
 import Message from '../../Shared/Message/Message';
+import Navigation from '../../Shared/Navigation/Navigation';
+import '.././accounts.css';
+import {
+  Link
+} from "react-router-dom";
+
 
 const Login = () => {
     const {setEmail, setPassword, signInWithEmail, googleSignIn, error} = useAuth() 
@@ -36,7 +38,7 @@ const Login = () => {
                             <label className='text-lg font-semibold mb-1' >Password</label>
                             <input type="password" name='password' onChange={handlePassword} required className="p-3 border-2 border-blue-300 outline-none" placeholder='xxxxxxxx' />
                             <div className='flex justify-between mt-2'>
-                                <p className='text-sm font-semibold'>Don't have any account?<span className='ml-1'>Register</span></p>
+                                <p className='text-sm font-semibold'>Don't have any account?<Link to="/registration" className='ml-1 text-red-600 cursor-pointer log-reg-switch-btn'>Register</Link></p>
                                 <p className='text-sm font-semibold'>Forget password?</p>
                             </div>
                             <div className='mx-auto' >
