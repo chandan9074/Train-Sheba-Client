@@ -14,7 +14,7 @@ const Login = () => {
             <div className='flex container mt-20 mb-40 items-center'>
                 <div className='w-1/2 flex justify-center'>
                     <div className='w-3/4'>
-                        <h1 className='text-2xl font-semibold'>Hello there!</h1>
+                        <h1 className='text-2xl font-semibold mb-0'>Hello there!</h1>
                         <h1 className='text-2xl font-semibold text-gray-500'>Welcome back</h1>
                         <p className='text-sm font-semibold border-l-4 border-gray-700 pl-2'>Login with your data that you are entered during registration</p>
                         <div class="main_div mt-5 mx-auto">
@@ -23,9 +23,9 @@ const Login = () => {
                         <p className='text-center font-bold mt-4 mb-3'>--------------- or --------------- </p>
                         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
                             <label className='text-lg font-semibold mb-1' >Email</label>
-                            <input type="text"  {...register("email", {required: true})} className="p-3 border-2 border-blue-300 mb-3" placeholder='abc@xyz.com' />
+                            <input type="text"  {...register("email", {required: true})} className="p-3 border-2 border-blue-300 mb-3 outline-none" placeholder='abc@xyz.com' />
                             <label className='text-lg font-semibold mb-1' >Password</label>
-                            <input type="password" {...register("password", {required: true})} className="p-3 border-2 border-blue-300" placeholder='xxxxxxxx' />
+                            <input type="password" {...register("password", {required: true})} className="p-3 border-2 border-blue-300 outline-none" placeholder='xxxxxxxx' />
                             <div className='flex justify-between mt-2'>
                                 <p className='text-sm font-semibold'>Don't have any account?<span className='ml-1'>Register</span></p>
                                 <p className='text-sm font-semibold'>Forget password?</p>
