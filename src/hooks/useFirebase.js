@@ -21,8 +21,8 @@ const useFirebase = () =>{
     const googleprovider = new GoogleAuthProvider();
 
     const auth = getAuth();
-    const createSingInWithEmail = (e) =>{
-        e.preventDefault();    
+    const createSingInWithEmail = () =>{
+        // e.preventDefault();    
         console.log(email, password);
         createUserWithEmailAndPassword(auth, email, password)
         .then((res) => {
@@ -91,6 +91,7 @@ const useFirebase = () =>{
     const logout = () =>{
         signOut(auth).then(() => {
             setUser({});
+            setError("");
         })
         .finally(() => setLoading(false))
     }

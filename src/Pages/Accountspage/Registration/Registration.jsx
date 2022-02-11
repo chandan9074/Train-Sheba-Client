@@ -1,13 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import useAuth from '../../../hooks/useAuth';
+import Footer from '../../Shared/Footer/Footer';
+import Message from '../../Shared/Message/Message';
 import Navigation from '../../Shared/Navigation/Navigation';
-import Footer from '../../Shared/Footer/Footer'
 import '.././accounts.css';
 
-import { useForm } from "react-hook-form";
 
 const Registration = () => {
-    const { register, handleSubmit, reset } = useForm();
-    const onSubmit = data => console.log(data);
+    const [verifyPassword, setVerifyPassword] = useState();
+    const {setEmail,setName, setPassword, createSingInWithEmail, error, password, setError} = useAuth();
+
+    const handleName = (e) =>{
+        setName(e.target.value);
+    }
+    const handleEmail = (e) =>{
+        setEmail(e.target.value);
+    }
+    const handlePassword = (e) =>{
+        setPassword(e.target.value);
+    }
+    const handleVarifyPass = (e) =>{
+        setVerifyPassword(e.target.value);
+    }
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        if(password === verifyPassword){
+            createSingInWithEmail(e)
+            setError("")
+        }
+        else{
+            setError("Password dose not match!")
+        }
+    }
+
     return ( 
         <div className='bg-gray-50'>
             <Navigation />
@@ -21,20 +47,24 @@ const Registration = () => {
                             <button><i class="fab fa-google mr-1 text-red-400"></i> Sign in with Google</button>
                         </div>
                         <p className='text-center font-bold mt-4 mb-3'>--------------- or --------------- </p>
-                        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+                        <form onSubmit={handleSubmit} className="flex flex-col">
                             <label className='text-lg font-semibold mb-1' >Name</label>
-                            <input type="text"  {...register("name", {required: true})} className="p-3 border-2 border-blue-300 outline-none mb-3" placeholder='Mr./Mrs. xyz' />
+                            <input type="text" name='name' required className="p-3 border-2 border-blue-300 outline-none mb-3" onChange={handleName} placeholder='Mr./Mrs. xyz' />
                             <label className='text-lg font-semibold mb-1' >Email</label>
-                            <input type="text"  {...register("email", {required: true})} className="p-3 border-2 border-blue-300 outline-none mb-3" placeholder='abc@xyz.com' />
+                            <input type="email" name='email' required className="p-3 border-2 border-blue-300 outline-none mb-3" onChange={handleEmail} placeholder='abc@xyz.com' />
                             <label className='text-lg font-semibold mb-1' >Password</label>
-                            <input type="password" {...register("password", {required: true})} className="p-3 border-2 border-blue-300 outline-none mb-3" placeholder='xxxxxxxx' />
+                            <input type="password" name='password' required className="p-3 border-2 border-blue-300 outline-none mb-3" onChange={handlePassword} placeholder='xxxxxxxx' />
                             <label className='text-lg font-semibold mb-1' >Confirm Password</label>
-                            <input type="password" {...register("password", {required: true})} className="p-3 border-2 border-blue-300 outline-none" placeholder='xxxxxxxx' />
+                            <input type="password" name="verifyPassword" required className="p-3 border-2 border-blue-300 outline-none" onChange={handleVarifyPass} placeholder='xxxxxxxx' />
                             <div className='flex justify-between mt-2'>
                                 <p className='text-sm font-semibold'>Already have an account?<span className='ml-1'>Login</span></p>
                             </div>
+                            <div className='mx-auto' >
+                                {error && <Message errormessage={error} />}
+                            </div>
+                            
                             <div class="main_div mt-4 mx-auto">
-                                <button>Register</button>
+                                <button type='submit'>Register</button>
                             </div>
                         </form>
                     </div>
