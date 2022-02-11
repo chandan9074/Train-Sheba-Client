@@ -2,10 +2,12 @@ import React from 'react';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Footer from '../../Shared/Footer/Footer'
 import '.././accounts.css';
+import useAuth from '../../../hooks/useAuth';
 
 import { useForm } from "react-hook-form";
 
 const Login = () => {
+    const {setEmail, setPassword, signInWithEmail, googleSignIn, error, setError} = useAuth() 
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => console.log(data);
     return ( 
@@ -18,7 +20,7 @@ const Login = () => {
                         <h1 className='text-2xl font-semibold text-gray-500'>Welcome back</h1>
                         <p className='text-sm font-semibold border-l-4 border-gray-700 pl-2'>Login with your data that you are entered during registration</p>
                         <div class="main_div mt-5 mx-auto">
-                            <button><i class="fab fa-google mr-1 text-red-400"></i> Sign in with Google</button>
+                            <button onClick={googleSignIn} ><i class="fab fa-google mr-1 text-red-400"></i> Sign in with Google</button>
                         </div>
                         <p className='text-center font-bold mt-4 mb-3'>--------------- or --------------- </p>
                         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">

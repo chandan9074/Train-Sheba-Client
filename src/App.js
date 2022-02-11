@@ -15,6 +15,7 @@ import Validation from './Pages/Ticketspage/Validationpart/Validation';
 import TicketSuccess from './Pages/Ticketspage/TicketSuccesspart/TicketSuccess';
 import Login from './Pages/Accountspage/Login/Login';
 import Registration from './Pages/Accountspage/Registration/Registration';
+import AuthProvider from './context/AuthProvider'
 
 // import components
 
@@ -24,29 +25,31 @@ function App() {
     <div className="App">
       {/* crate router  */}
       <Router>
-        <Routes>
-          <Route exact path="/" element={<Homepage />}>
-          </Route>
-          <Route exact path="/tickets" element={<Ticket />}>
-          </Route>
-          <Route exact path="/passengers" element={<Passengers />}>
-          </Route>
-          <Route exact path="/payment" element={<Payment />}>
-          </Route>
-          <Route exact path="/login" element={<Login />}>
-          </Route>
-          <Route exact path="/registration" element={<Registration />}>
-          </Route>
-          
-          <Route exact path="/validation" element={
-            <Elements stripe={stripePromise}>
-              <Validation />
-            </Elements>
-          }>
-          </Route>
-          <Route exact path="/ticketsuccess" element={<TicketSuccess />}>
-          </Route>
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route exact path="/" element={<Homepage />}>
+            </Route>
+            <Route exact path="/tickets" element={<Ticket />}>
+            </Route>
+            <Route exact path="/passengers" element={<Passengers />}>
+            </Route>
+            <Route exact path="/payment" element={<Payment />}>
+            </Route>
+            <Route exact path="/login" element={<Login />}>
+            </Route>
+            <Route exact path="/registration" element={<Registration />}>
+            </Route>
+            
+            <Route exact path="/validation" element={
+              <Elements stripe={stripePromise}>
+                <Validation />
+              </Elements>
+            }>
+            </Route>
+            <Route exact path="/ticketsuccess" element={<TicketSuccess />}>
+            </Route>
+          </Routes>
+        </AuthProvider>
       </Router>
     </div>
   );
