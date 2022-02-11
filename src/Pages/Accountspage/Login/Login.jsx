@@ -5,11 +5,18 @@ import '.././accounts.css';
 import useAuth from '../../../hooks/useAuth';
 
 import { useForm } from "react-hook-form";
+import Message from '../../Shared/Message/Message';
 
 const Login = () => {
-    const {setEmail, setPassword, signInWithEmail, googleSignIn, error, setError} = useAuth() 
-    const { register, handleSubmit, reset } = useForm();
-    const onSubmit = data => console.log(data);
+    const {setEmail, setPassword, signInWithEmail, googleSignIn, error} = useAuth() 
+
+    const handleEmail = (e) =>{
+        setEmail(e.target.value);
+    }
+    const handlePassword = (e) =>{
+        setPassword(e.target.value);
+    }
+
     return ( 
         <div className='bg-gray-50'>
             <Navigation />
@@ -23,17 +30,20 @@ const Login = () => {
                             <button onClick={googleSignIn} ><i class="fab fa-google mr-1 text-red-400"></i> Sign in with Google</button>
                         </div>
                         <p className='text-center font-bold mt-4 mb-3'>--------------- or --------------- </p>
-                        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+                        <form onSubmit={(e)=>signInWithEmail(e)} className="flex flex-col">
                             <label className='text-lg font-semibold mb-1' >Email</label>
-                            <input type="text"  {...register("email", {required: true})} className="p-3 border-2 border-blue-300 mb-3 outline-none" placeholder='abc@xyz.com' />
+                            <input type="text" name='email' onChange={handleEmail} required className="p-3 border-2 border-blue-300 mb-3 outline-none" placeholder='abc@xyz.com' />
                             <label className='text-lg font-semibold mb-1' >Password</label>
-                            <input type="password" {...register("password", {required: true})} className="p-3 border-2 border-blue-300 outline-none" placeholder='xxxxxxxx' />
+                            <input type="password" name='password' onChange={handlePassword} required className="p-3 border-2 border-blue-300 outline-none" placeholder='xxxxxxxx' />
                             <div className='flex justify-between mt-2'>
                                 <p className='text-sm font-semibold'>Don't have any account?<span className='ml-1'>Register</span></p>
                                 <p className='text-sm font-semibold'>Forget password?</p>
                             </div>
+                            <div className='mx-auto' >
+                                {error && <Message errormessage={error} />}
+                            </div>
                             <div class="main_div mt-4 mx-auto">
-                                <button>Login</button>
+                                <button type='submit'>Login</button>
                             </div>
                         </form>
                     </div>
