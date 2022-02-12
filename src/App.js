@@ -16,6 +16,7 @@ import TicketSuccess from './Pages/Ticketspage/TicketSuccesspart/TicketSuccess';
 import Login from './Pages/Accountspage/Login/Login';
 import Registration from './Pages/Accountspage/Registration/Registration';
 import AuthProvider from './context/AuthProvider'
+import Dashboard from './Pages/Dashboardpage/Dashboard';
 
 // import components
 
@@ -38,6 +39,8 @@ function App() {
             <Route exact path="/login" element={<Login />}>
             </Route>
             <Route exact path="/registration" element={<Registration />}>
+            </Route>
+            <Route exact path="/deshboard" element={<Dashboard />}>
             </Route>
             
             <Route exact path="/validation" element={
