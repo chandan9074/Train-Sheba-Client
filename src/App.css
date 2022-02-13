@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.css';
 .elipsis-after-4-line {
   display: -webkit-box;
   -webkit-line-clamp: 4;

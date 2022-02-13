@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Drawer, Button, Space, Radio } from 'antd';
-import Navigation from '../Shared/Navigation/Navigation';
+import DashboardNavigation from '../Shared/Navigation/DashboardNavigation';
 
 const Dashboard = () => {
     const [visible, setVisible] = useState(false);
+    const isMobile = true;
     const showDrawer = () => {
     setVisible(true);
   };
@@ -13,7 +14,8 @@ const Dashboard = () => {
   };
     return ( 
         <>
-        <Navigation />
+        <DashboardNavigation />
+        <div>
         <Space>
             <Button type="primary" onClick={showDrawer}>
             Open
@@ -22,7 +24,7 @@ const Dashboard = () => {
         <Drawer
             title="Drawer with extra actions"
             placement="left"
-            width={100}
+            
             onClose={onClose}
             visible={visible}
             extra={
@@ -38,6 +40,8 @@ const Dashboard = () => {
             <p>Some contents...</p>
             <p>Some contents...</p>
         </Drawer>
+        </div>
+        
     </>
      );
 }
