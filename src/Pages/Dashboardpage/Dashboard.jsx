@@ -14,25 +14,22 @@ const Dashboard = () => {
   };
     return ( 
         <>
-        <DashboardNavigation />
+        <DashboardNavigation onChange={showDrawer} />
         <div>
-        <Space>
+        {/* <Space>
             <Button type="primary" onClick={showDrawer}>
             Open
             </Button>
-        </Space>
+        </Space> */}
         <Drawer
-            title="Drawer with extra actions"
+            title={<p className="text-base font-extrabold flex items-center m-0"><i class="fas fa-subway text-yellow-500 mr-1"></i> <span className="text-gray-600">TRAIN</span><span className="text-gray-400">SHEBA</span></p>}
             placement="left"
-            
+            closable={false}
             onClose={onClose}
             visible={visible}
             extra={
             <Space>
-                <Button onClick={onClose}>Cancel</Button>
-                <Button type="primary" onClick={onClose}>
-                OK
-                </Button>
+                <i class="fas fa-window-close cursor-pointer text-2xl text-gray-700" onClick={onClose}></i>
             </Space>
             }
         >

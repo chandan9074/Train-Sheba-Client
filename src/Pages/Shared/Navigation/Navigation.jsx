@@ -1,8 +1,7 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import {
-  Link,
-  useLocation
+  Link
 } from "react-router-dom";
 
 import './navigation.css';
@@ -11,11 +10,10 @@ import useAuth from '../../../hooks/useAuth';
 
 const Navigation = () => {
   const {user, logout} = useAuth();
-  const location = useLocation();
     return (  
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <Container>
-        <Navbar.Brand href="#home">{location.pathname.includes("dashboard") ? <i class="fas fa-bars border-2 border-gray-200 py-1 px-1.5 rounded text-gray-600 hover:shadow-sm"></i>: <p className="text-base font-extrabold flex items-center m-0"><i class="fas fa-subway text-yellow-500 mr-1"></i> <span className="text-gray-600">TRAIN</span><span className="text-gray-400">SHEBA</span></p>}</Navbar.Brand>
+        <Navbar.Brand href="#home"><p className="text-base font-extrabold flex items-center m-0"><i class="fas fa-subway text-yellow-500 mr-1"></i> <span className="text-gray-600">TRAIN</span><span className="text-gray-400">SHEBA</span></p></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
