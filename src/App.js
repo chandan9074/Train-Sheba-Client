@@ -1,27 +1,24 @@
 // import pakages
-import './App.css';
 import {
   BrowserRouter as Router,
   Route,
   Routes
 } from "react-router-dom";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from '@stripe/stripe-js';
-import Homepage from './Pages/Homepage/Homepage';
-import Ticket from './Pages/Ticketspage/Ticketspart/Ticket';
-import Passengers from './Pages/Ticketspage/Passengerspart/Passengers';
-import Payment from './Pages/Ticketspage/Paymentpart/Payment';
-import Validation from './Pages/Ticketspage/Validationpart/Validation';
-import TicketSuccess from './Pages/Ticketspage/TicketSuccesspart/TicketSuccess';
+import './App.css';
+import AuthProvider from './context/AuthProvider';
 import Login from './Pages/Accountspage/Login/Login';
 import Registration from './Pages/Accountspage/Registration/Registration';
-import AuthProvider from './context/AuthProvider'
 import Dashboard from './Pages/Dashboardpage/Dashboard';
-
+import Homepage from './Pages/Homepage/Homepage';
+import PrivateRoute from './Pages/Private route/PrivateRoute';
+import Passengers from './Pages/Ticketspage/Passengerspart/Passengers';
+import Payment from './Pages/Ticketspage/Paymentpart/Payment';
+import Ticket from './Pages/Ticketspage/Ticketspart/Ticket';
+import TicketSuccess from './Pages/Ticketspage/TicketSuccesspart/TicketSuccess';
+import Validation from './Pages/Ticketspage/Validationpart/Validation';
 // import components
 
 function App() {
-  const stripePromise = loadStripe('pk_test_51KOK6DDwHICDWFJIgFNP5rlR59k5W0DyjfGtaA7V6GTsaaAQCu17l4nkokTFHej5a9U3QCq3PLc62jXO8lW1gHDZ00sVd6tSCV');
   return (
     <div className="App">
       {/* crate router  */}
@@ -30,27 +27,20 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Homepage />}>
             </Route>
-            <Route exact path="/tickets" element={<Ticket />}>
-            </Route>
-            <Route exact path="/passengers" element={<Passengers />}>
-            </Route>
-            <Route exact path="/payment" element={<Payment />}>
-            </Route>
             <Route exact path="/login" element={<Login />}>
             </Route>
             <Route exact path="/registration" element={<Registration />}>
             </Route>
-            <Route exact path="/dashboard" element={<Dashboard />}>
+
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route exact path="/tickets" element={<Ticket />} />
+              <Route exact path="/passengers" element={<Passengers />} />
+              <Route exact path="/payment" element={<Payment />} />
+              <Route exact path="/validation" element={<Validation />} />
+              <Route exact path="/ticketsuccess" element={<TicketSuccess />} />
             </Route>
             
-            <Route exact path="/validation" element={
-              <Elements stripe={stripePromise}>
-                <Validation />
-              </Elements>
-            }>
-            </Route>
-            <Route exact path="/ticketsuccess" element={<TicketSuccess />}>
-            </Route>
           </Routes>
         </AuthProvider>
       </Router>
