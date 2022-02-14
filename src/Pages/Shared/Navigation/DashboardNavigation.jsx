@@ -24,11 +24,6 @@ const DashboardNavigation = ({onChange}) => {
                 <div className='flex items-center'>
                     <i class="fas fa-bars border-2 border-gray-200 py-0.5 px-1.5 rounded text-gray-600 hover:shadow-sm text-xl cursor-pointer" onClick={onChange}></i>
                     <p className="text-base font-extrabold flex items-center my-0 ml-10 hidden md:block"><i class="fas fa-subway text-yellow-500 mr-1"></i> <span className="text-gray-600">TRAIN</span><span className="text-gray-400">SHEBA</span></p>
-                    {/* <div className='flex items-center ml-10 hidden md:block'>
-                        <Link to="/" className="nav-btn">Home</Link>
-                        <Link to="/dashboard" className="nav-btn mx-3">Dashboard</Link>
-                        <Link to="/tickets" className="nav-btn">Booking</Link>
-                    </div> */}
                 </div>
                 <div className='flex items-center'>
                     {user.email?<>
