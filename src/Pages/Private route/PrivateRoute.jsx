@@ -7,11 +7,11 @@ import useAuth from '../../hooks/useAuth';
 
 const PrivateRoute = () => {
     const {user, loading} = useAuth();
-    return user.email ? <Outlet /> : <Navigate
+    return (loading ? null: user.email ? <Outlet /> : <Navigate
                 to={{
                 pathname: "/login"
                 }}
-            />
+            />)
 }
  
 export default PrivateRoute;
