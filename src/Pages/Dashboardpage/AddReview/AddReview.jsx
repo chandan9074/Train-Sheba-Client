@@ -1,16 +1,41 @@
-import React from 'react';
-import { useForm } from "react-hook-form";
 import { Rate } from 'antd';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
-import { Link } from 'react-router-dom';
+import Message from '../../Shared/Message/Message';
 
 const AddReview = () => {
-    const {user} = useAuth();
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const [rating, setRating] = useState();
+    const {user, error, setError} = useAuth();
+    const { register, handleSubmit, reset } = useForm();
+    const anony = document.getElementById("cbx");
+    const onSubmit = data => {
+        if(rating){
+            if(anony.checked == true){
+                data.anony = true;
+            }
+            else{
+                data.anony = false;
+            }
+            data.user_img = user.photoURL;
+            data.rating = rating;
+            axios.post('http://localhost:5000/review', data)
+                .then(res=>{
+                    reset();
+                    setError("")
+                })
+                .catch((error)=>{
+                    reset()
+                })
+        }
+        else{
+            setError("Please fill up the rating part")
+        }
+    };
 
     const handleRating = (value) =>{
-        console.log("rating", value)
+        setRating(value)
     }
     return ( 
         <div className='container mb-36'>
@@ -22,9 +47,9 @@ const AddReview = () => {
                     <label className='text-lg font-semibold mb-1'>Email</label>
                     <input value={user.email} {...register("email")} className="p-3 border-2 border-blue-300 outline-none mb-3 w-11/12 font-semibold" readOnly />
                     <label className='text-lg font-semibold mb-1'>Review</label>
-                    <textarea  {...register("review", { required: true })} className="p-3 border-2 border-blue-300 outline-none mb-3 w-11/12 h-40 resize-none font-semibold" placeholder='Give us a feedback' />
+                    <textarea  {...register("review")} required className="p-3 border-2 border-blue-300 outline-none mb-3 w-11/12 h-40 resize-none font-semibold" placeholder='Give us a feedback' />
                     <label className='text-lg font-semibold mb-1'>Rate us</label>
-                    <Rate allowHalf defaultValue={5} onChange={(value)=>handleRating(value)} required />
+                    <Rate allowHalf onChange={(value)=>handleRating(value)} required />
                     <div className='flex mt-4 ml-10'>
                         <div class="cntr">
                             <input type="checkbox" id="cbx" class="hidden-xs-up" />
@@ -32,8 +57,10 @@ const AddReview = () => {
                         </div>
                         <p className='font-semibold ml-4'>Post as an Anonymous</p>
                     </div>
-                    
-                    <Link to="" className='send-btn rounded mx-auto mt-4'>
+                    <div className='w-1/2 mx-auto mt-4'>
+                        {error && <Message errormessage={error} />}
+                    </div>
+                    <button type='submit' className='send-btn rounded mx-auto mt-4'>
                         <div class="svg-wrapper-1">
                             <div class="svg-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -43,7 +70,7 @@ const AddReview = () => {
                             </div>
                         </div>
                         <span>Send</span>
-                    </Link>
+                    </button>
                 </form>
                 <div className='w-1/2'>
                     <img src="https://i.ibb.co/hByzxxk/icon-train-39071.png" alt="train-image" className='w-full opacity-5' />
