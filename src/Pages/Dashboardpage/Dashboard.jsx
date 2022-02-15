@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Drawer, Button, Space, Radio } from 'antd';
 import DashboardNavigation from '../Shared/Navigation/DashboardNavigation';
 import { Outlet } from 'react-router';
+import './dashboard.css';
 import {
   Link, 
   useMatch,
@@ -9,6 +10,7 @@ import {
   useLocation,
   Routes
 } from "react-router-dom";
+import Footer from '../Shared/Footer/Footer';
 
 const Dashboard = () => {
     const [visible, setVisible] = useState(false);
@@ -38,17 +40,18 @@ const Dashboard = () => {
                 >
                     <div className='flex flex-col'>
                         <Link to="/" className="nav-btn text-base font-semibold py-2"> <i class="fas fa-home mr-2"></i> Home</Link>
-                        <Link to="/dashboard" className="nav-btn text-base font-semibold py-2"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</Link>
+                        <Link to="/dashboard" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</Link>
                         <Link to="/tickets" className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Booking</Link>
                     </div>
                     <hr className='w-full text-gray-400' />
                     <div className='flex flex-col'>
-                        <Link to="/tickets" className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> My Bookings</Link>
-                        <Link to="/dashboard/addreview" className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Add Review</Link>
+                        <Link to="/tickets" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> My Bookings</Link>
+                        <Link to="/dashboard/addreview" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Add Review</Link>
                     </div>
                 </Drawer>
             </div>    
             <Outlet />
+            <Footer />
         </>
      );
 }
