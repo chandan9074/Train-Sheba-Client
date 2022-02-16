@@ -17,6 +17,7 @@ import Ticket from './Pages/Ticketspage/Ticketspart/Ticket';
 import TicketSuccess from './Pages/Ticketspage/TicketSuccesspart/TicketSuccess';
 import Validation from './Pages/Ticketspage/Validationpart/Validation';
 import AddReview from './Pages/Dashboardpage/AddReview/AddReview';
+import AddTravelDestination from './Pages/Dashboardpage/AddTravelDestination/AddTravelDestination';
 // import components
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
             <Route element={<PrivateRoute />}>
               <Route path="/dashboard" element={<Dashboard />} >
                 <Route path="addreview" element={<AddReview />} />
+                <Route path="addtraveldestination" element={<AddTravelDestination />} />
               </Route>
               <Route exact path="/tickets" element={<Ticket />} />
               <Route exact path="/passengers" element={<Passengers />} />

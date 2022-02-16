@@ -27,7 +27,6 @@ const AddReview = () => {
             axios.post('http://localhost:5000/review', data)
                 .then(res=>{
                     reset();
-                    setError("");
                     setLoading(false);
                     message.success('Successfully submitted!');
                 })

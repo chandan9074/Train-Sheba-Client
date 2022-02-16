@@ -2,14 +2,14 @@ import React from 'react';
 
 
 const SingleLetestDestination = ({desti}) => {
-    const {_id, img, formDistrict, toDistrict, fromStation, toStation, travelTime, price} = desti;
+    const {_id, img, fromDistrict, toDistrict, fromStation, toStation, travelTime, price} = desti;
     return ( 
         <div className="mx-auto">
             <img src={img} alt=""  className="service-card-img w-80 h-60"/>
             <div className="shadow-lg service-details-part bg-gray-400 w-80 -mt-14 ">
                 <div className="flex justify-between mt-4 pt-5 pb-2 px-4">
                     <div className="">
-                        <h1 className="text-xl font-bold">{formDistrict}</h1>
+                        <h1 className="text-xl font-bold">{fromDistrict}</h1>
                         <p className="text-sm w-3/4">{fromStation}</p>
                     </div>
                     <div className="">
