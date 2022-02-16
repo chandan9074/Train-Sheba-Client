@@ -1,17 +1,21 @@
-import { Rate } from 'antd';
+import { Rate, message } from 'antd';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
 import Message from '../../Shared/Message/Message';
+import Spinner from '../../Shared/Spinner/Spinner';
 
 const AddReview = () => {
     const [rating, setRating] = useState();
+    const [loading, setLoading] = useState(false);
     const {user, error, setError} = useAuth();
     const { register, handleSubmit, reset } = useForm();
     const anony = document.getElementById("cbx");
     const onSubmit = data => {
         if(rating){
+            setError("");
+            setLoading(true)
             if(anony.checked == true){
                 data.anony = true;
             }
@@ -23,10 +27,13 @@ const AddReview = () => {
             axios.post('http://localhost:5000/review', data)
                 .then(res=>{
                     reset();
-                    setError("")
+                    setError("");
+                    setLoading(false);
+                    message.success('Successfully submitted!');
                 })
                 .catch((error)=>{
-                    reset()
+                    reset();
+                    setLoading(false);
                 })
         }
         else{
@@ -49,7 +56,7 @@ const AddReview = () => {
                     <label className='text-lg font-semibold mb-1'>Review</label>
                     <textarea  {...register("review")} required className="p-3 border-2 border-blue-300 outline-none mb-3 w-11/12 h-40 resize-none font-semibold" placeholder='Give us a feedback' />
                     <label className='text-lg font-semibold mb-1'>Rate us</label>
-                    <Rate allowHalf onChange={(value)=>handleRating(value)} required />
+                    <Rate allowClear={true} allowHalf onChange={(value)=>handleRating(value)} required />
                     <div className='flex mt-4 ml-10'>
                         <div class="cntr">
                             <input type="checkbox" id="cbx" class="hidden-xs-up" />
@@ -60,6 +67,7 @@ const AddReview = () => {
                     <div className='w-1/2 mx-auto mt-4'>
                         {error && <Message errormessage={error} />}
                     </div>
+                    {loading ? <div className='mx-auto'><Spinner /></div>:
                     <button type='submit' className='send-btn rounded mx-auto mt-4'>
                         <div class="svg-wrapper-1">
                             <div class="svg-wrapper">
@@ -70,7 +78,7 @@ const AddReview = () => {
                             </div>
                         </div>
                         <span>Send</span>
-                    </button>
+                    </button>}
                 </form>
                 <div className='w-1/2'>
                     <img src="https://i.ibb.co/hByzxxk/icon-train-39071.png" alt="train-image" className='w-full opacity-5' />
