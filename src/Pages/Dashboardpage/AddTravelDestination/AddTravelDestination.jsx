@@ -1,11 +1,11 @@
-import { Rate, message } from 'antd';
+import { message } from 'antd';
 import axios from 'axios';
 import React, { useState } from 'react';
+import FileBase64 from 'react-file-base64';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
 import Message from '../../Shared/Message/Message';
 import Spinner from '../../Shared/Spinner/Spinner';
-import FileBase64 from 'react-file-base64';
 
 
 const AddTravelDestination = () => {
