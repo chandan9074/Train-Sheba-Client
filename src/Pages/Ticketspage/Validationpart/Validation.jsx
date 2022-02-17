@@ -22,6 +22,9 @@ const Validation = () => {
     const newUpdatePrice = parseprice * parseticket;
     // console.log(parseprice, parseticket);
     console.log("validation state", state);
+    useEffect(()=>{
+        
+    })
 
     // const onSubmit = data =>console.log(data);
     const handleBuyTicket = async () =>{

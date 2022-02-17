@@ -4,7 +4,7 @@ import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
 import { Link, useNavigate } from 'react-router-dom';
 import Message from "../../Shared/Message/Message";
 
-const CheckoutForm = ({state}) => {
+const CheckoutForm = ({state, ticketPrice}) => {
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();
@@ -83,7 +83,54 @@ const CheckoutForm = ({state}) => {
             else{
                 console.log(paymentIntent);
                 setErromessage("")
-                navigate("/validation", {state:{ paymentMethod: paymentMethod , passInfo: state.passInfo, train:state.train, userData: state.userData}})
+
+                const availableSit = state.sitResult - state.passInfo.ticket;
+                const fromDistrict = state.train.fromDistrict;
+                const toDistrict = state.train.toDistrict;
+                const classname = state.train.classname;
+                const departure = state.userData.departure;
+                const name = state.passInfo.name;
+                const email = state.passInfo.email;
+                const trainName = state.train.trainName;
+                const ticket = state.passInfo.ticket;
+                const cardName = paymentMethod.card.brand;
+                const tranID = paymentMethod.id;
+                const last4 = paymentMethod.card.last4
+                
+                const searchTrainData = {trainName, fromDistrict, toDistrict, classname, departure, availableSit};
+                fetch("http://localhost:5000/search-train-tickets-manage", {
+                        method: "PUT",
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify(searchTrainData)
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        if(res){
+                            // setSearchResult(res);
+                        }
+                        console.log("search result", res);
+                    })
+
+                const bookingData = {name, email, trainName, fromDistrict, toDistrict, classname, departure, ticketPrice, ticket, cardName, tranID, last4}
+
+                fetch("http://localhost:5000/user-train-bookings", {
+                        method: "POST",
+                        headers: {
+                            "content-type": "application/json"
+                        },
+                        body: JSON.stringify(bookingData)
+                    })
+                    .then(res=>res.json())
+                    .then(res=>{
+                        if(res){
+                            // setSearchResult(res);
+                        }
+                        console.log("search result", res);
+                    })
+
+                navigate("/validation", {state:{ paymentMethod: paymentMethod , passInfo: state.passInfo, train:state.train, userData: state.userData, sitResult:state.sitResult}})
             }
     }
     return (
@@ -118,7 +165,7 @@ const CheckoutForm = ({state}) => {
                         </div>
                     </button>
                     <button type='submit' className='buy-now-btn'>
-                        <span>Next</span>
+                        <span>Checkout</span>
                     </button>
                 </div>
             </form>

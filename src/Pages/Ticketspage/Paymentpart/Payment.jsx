@@ -66,7 +66,7 @@ const Payment = () => {
                                 <div>
                                     <h1 className='text-2xl mt-2'>Payment Information</h1>
                                     <Elements stripe={stripePromise}>
-                                        <CheckoutForm state={state} />
+                                        <CheckoutForm state={state} ticketPrice={newUpdatePrice} />
                                     </Elements>
                                 </div>
                             </div>

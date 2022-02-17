@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { useLocation } from 'react-router';
-
+import useAuth from '../../../hooks/useAuth';
 import Navigation from '../../Shared/Navigation/Navigation';
 import TicketBanner from '../TicketBanner';
 import Footer from '../../Shared/Footer/Footer';
@@ -13,6 +13,7 @@ const Passengers = () => {
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const {state} = useLocation();
+    const {user} = useAuth();
     console.log("train", state);
 
     let today = new Date();
@@ -25,7 +26,7 @@ const Passengers = () => {
         navigate("/tickets", {state:state});
     }
 
-    const onSubmit = data =>navigate("/payment", {state:{passInfo: data, train:state.train, userData: state.userData}});
+    const onSubmit = data =>navigate("/payment", {state:{passInfo: data, train:state.train, userData: state.userData, sitResult:state.sitResult}});
     return ( 
         <div>
             <Navigation />
@@ -51,11 +52,11 @@ const Passengers = () => {
                                         <div className='flex p-4 border-1 border-gray-200'>
                                             <div className='w-1/3'>
                                                 <label htmlFor="" className='text-lg font-semibold'>Name <sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Name' required />
+                                                <input value={user.displayName} {...register("name")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Name' required readOnly />
                                             </div>
                                             <div className='w-1/3 mx-5'>
                                                 <label htmlFor="" className='text-lg font-semibold'>Email<sup className='text-red-700 text-xl'>*</sup></label><br />
-                                                <input {...register("email")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Email' required />
+                                                <input value={user.email} {...register("email")} className='border-1 border-gray-200 focus:outline-none  focus:border-red-600 py-2 px-3 w-full shadow-md mt-2 rounded' placeholder='Enter Your Email' required readOnly />
                                             </div>
                                             <div className='w-1/3'>
                                                 <label htmlFor="" className='text-lg font-semibold'>Age<sup className='text-red-700 text-xl'>*</sup></label><br />

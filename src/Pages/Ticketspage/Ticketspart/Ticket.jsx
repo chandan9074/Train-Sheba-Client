@@ -13,6 +13,8 @@ const Ticket = () => {
     const {state} = useLocation();
     // const loop = [1, 2, 3, 4]
     const [trains, setTrains] = useState([]);
+    const [searchResult, setSearchResult] = useState([]);
+
     const [recentTickets, setRecentTickets] = useState([]);
     // console.log(state)
 
@@ -25,11 +27,13 @@ const Ticket = () => {
             setRecentTickets(newArray)
             // setTrains(newArray);
         })
+        // console.log(state)
 
         if(state){
             const from = state.from;
             const to = state.to;
             const classname = state.class;
+            const departure = state.departure;
     
             const bodyData = {from, to, classname};
     
@@ -43,6 +47,22 @@ const Ticket = () => {
             .then(res=>res.json())
             .then(res=>{
                 setTrains(res);
+            })
+
+            const searchData = {from, to , classname, departure};
+            fetch("http://localhost:5000/search-train-tickets-manage", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(searchData)
+            })
+            .then(res=>res.json())
+            .then(res=>{
+                if(res){
+                    setSearchResult(res);
+                }
+                console.log("search result", res);
             })
         }
     }, [state])
@@ -100,7 +120,7 @@ const Ticket = () => {
                             </div>
                             {trains.map(train=>(
                                 <div className='mt-3'>
-                                    <SingleTicket train={train} state={state} />
+                                    <SingleTicket train={train} searchResult={searchResult} state={state} departure={state.departure} />
                                 </div>
                             ))}
                         </div>

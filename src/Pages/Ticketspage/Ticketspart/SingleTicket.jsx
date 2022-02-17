@@ -1,13 +1,25 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 
-const SingleTicket = ({train, state}) => {
+const SingleTicket = ({train, state, searchResult, departure}) => {
 
     const {_id, classname, fromDistrict, fromStation, toDistrict, toStation, trainName, sit, availableSit, araivelTime, departureTime, travelTime, available, price} = train;
     const navigate = useNavigate();
+    const [sitResult, setSitResult] = useState(60);
+
+    useEffect(()=>{
+        if (searchResult.length !== 0){
+            let t = searchResult.filter(function (obj) { 
+                return obj.trainName===trainName && obj.departure === departure; 
+            })[0];
+            setSitResult(t.availableSit);
+        }
+    })
 
     const handleNext = () =>{
-        navigate("/passengers", {state:{train:train, userData:state}});
+        navigate("/passengers", {state:{train:train, userData:state, sitResult:sitResult}});
     }
 
     return ( 
@@ -43,7 +55,7 @@ const SingleTicket = ({train, state}) => {
                     <i class="fas fa-hamburger text-sm text-gray-500"></i>
                 </div>
                 <button className='buy-now-btn mt-3' onClick={handleNext} >
-                    {availableSit > state.passengers ?
+                    {sitResult >= state.passengers ?
                     <span>Buy Now</span>: <span>Not Available</span>}
                 </button>
             </div>
