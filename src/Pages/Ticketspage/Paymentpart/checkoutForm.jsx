@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import {CardElement, useElements, useStripe} from "@stripe/react-stripe-js";
 // import { message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
+import Spinner from '../../Shared/Spinner/Spinner';
 import Message from "../../Shared/Message/Message";
 
 const CheckoutForm = ({state, ticketPrice}) => {
     const stripe = useStripe();
     const elements = useElements();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
     const [clientsecret, setClientsecret] = useState("");
     const [errormessage, setErromessage] = useState("");
     const parseticket = parseInt(state.userData.passengers);
@@ -35,6 +37,7 @@ const CheckoutForm = ({state, ticketPrice}) => {
 
     const handleSubmitPayment = async (e) =>{
         e.preventDefault();
+        setLoading(true)
         if (!stripe || !elements) {
             // Stripe.js has not loaded yet. Make sure to disable
             // form submission until Stripe.js has loaded.
@@ -131,6 +134,7 @@ const CheckoutForm = ({state, ticketPrice}) => {
                     })
 
                 navigate("/validation", {state:{ paymentMethod: paymentMethod , passInfo: state.passInfo, train:state.train, userData: state.userData, sitResult:state.sitResult}})
+                setLoading(false)
             }
     }
     return (
@@ -157,6 +161,10 @@ const CheckoutForm = ({state, ticketPrice}) => {
                 <div className='flex justify-center mt-3'>
                    { errormessage && <Message errormessage={errormessage} />}
                 </div>
+                {loading? 
+                <div className='flex justify-center mt-3'>
+                    <Spinner />
+                </div>:
                 <div className='flex items-center justify-between mt-3'>
                     <button onClick={handleBack} className='back-btn'>
                         <div className='flex items-center justify-center'>
@@ -167,7 +175,7 @@ const CheckoutForm = ({state, ticketPrice}) => {
                     <button type='submit' className='buy-now-btn'>
                         <span>Checkout</span>
                     </button>
-                </div>
+                </div>}
             </form>
         </div> 
     );
