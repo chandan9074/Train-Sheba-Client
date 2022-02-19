@@ -145,3 +145,135 @@
     transform: translateY(-0.1em);
   }
 }
+
+.travel-img-border {
+  border: 5px solid rgb(224, 222, 222);
+  border-radius: 0.5rem;
+}
+
+/* From css.noselects.io */
+.noselect {
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: red;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  background: #e62222;
+}
+
+.noselect span {
+  transition: 200ms;
+}
+
+.noselect .text {
+  transform: translateX(15px);
+  color: white;
+  font-weight: bold;
+  /* font-size: 1rem; */
+}
+
+.noselect .icon {
+  position: absolute;
+  /* border-left: 1px solid #c41b1b; */
+  border-left: 1px solid whitesmoke;
+  transform: translateX(67px);
+  height: 17px;
+  width: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noselect:hover {
+  background: #ff3636;
+}
+
+.noselect:hover .text {
+  color: transparent;
+}
+
+.noselect:hover .icon {
+  width: 50px;
+  border-left: none;
+  transform: translateX(20px);
+}
+
+.noselect:focus {
+  outline: none;
+}
+
+.noselect:active .icon svg {
+  transform: scale(0.8);
+}
+
+/* From css.noselects.io */
+.update {
+  width: 100px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  /* background: #5fc957; */
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+  background: #36ad2e;
+}
+
+.update span {
+  transition: 200ms;
+}
+
+.update .text {
+  transform: translateX(13px);
+  color: white;
+  font-weight: bold;
+  /* font-size: 1rem; */
+}
+
+.update .icon {
+  position: absolute;
+  /* border-left: 1px solid #c41b1b; */
+  border-left: 1px solid whitesmoke;
+  transform: translateX(67px);
+  height: 17px;
+  width: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.update:hover {
+  background: #55c44d;
+}
+
+.update:hover .text {
+  color: transparent;
+}
+
+.update:hover .icon {
+  width: 50px;
+  border-left: none;
+  transform: translateX(20px);
+}
+
+.update:focus {
+  outline: none;
+}
+
+.update:active .icon svg {
+  transform: scale(0.8);
+}
+
+.singleTravelCardBtn {
+  visibility: hidden;
+  transition: 200ms;
+}
+
+.singleTravelcard:hover .singleTravelCardBtn {
+  visibility: visible;
+}

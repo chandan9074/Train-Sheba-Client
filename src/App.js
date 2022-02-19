@@ -19,6 +19,7 @@ import Validation from './Pages/Ticketspage/Validationpart/Validation';
 import AddReview from './Pages/Dashboardpage/AddReview/AddReview';
 import AddTravelDestination from './Pages/Dashboardpage/AddTravelDestination/AddTravelDestination';
 import AddNews from "./Pages/Dashboardpage/AddNews/AddNews";
+import ManageTravelDestination from "./Pages/Dashboardpage/AddTravelDestination/ManageTravelDestination";
 // import components
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
                 <Route path="addreview" element={<AddReview />} />
                 <Route path="addnews" element={<AddNews />} />
                 <Route path="addtraveldestination" element={<AddTravelDestination />} />
+                <Route path="managetraveldestination" element={ <ManageTravelDestination />} />
               </Route>
               <Route exact path="/tickets" element={<Ticket />} />
               <Route exact path="/passengers" element={<Passengers />} />
