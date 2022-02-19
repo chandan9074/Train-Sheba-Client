@@ -15,25 +15,48 @@ const AddTravelDestination = () => {
     const [loading, setLoading] = useState(false);
     const {user, error, setError} = useAuth();
     const {state} = useLocation();
+    const districts = ["Dhaka", "Chittagong", "Barisal", "Khulna", "Mymensingh", "Rajshahi", "Rangpur", "Sylhet"]
+    const times = ["Daily", "Weekly", "Vacation"]
+
+    let fromStationData = "";
+    let toStationData = ""
+    let priceData = "";
+    let fromDistrictData = "";
+    let toDistrictData = "";
+    let travelTimeData = ""
+    // let imgData = "";
+    
+    if(state.destiData){
+        fromStationData = state.destiData.fromStation;
+        toStationData = state.destiData.toStation
+        priceData = state.destiData.price;
+        fromDistrictData = state.destiData.fromDistrict;
+        toDistrictData = state.destiData.toDistrict;
+        travelTimeData = state.destiData.travelTime
+        // imgData = state.destiData.img;
+        // setImage(state.destiData.img)
+    }
+
     const onSubmit = data => {
-        if(image){
-            setError("");
-            setLoading(true)
-            data.img = image;
-            axios.post('http://localhost:5000/letestdestinations', data)
-                .then(res=>{
-                    reset();
-                    setLoading(false);
-                    message.success('Successfully submitted!');
-                })
-                .catch((error)=>{
-                    reset();
-                    setLoading(false);
-                })
-        }
-        else{
-            setError("Please upload a image!")
-        }
+        // if(image){
+        //     setError("");
+        //     setLoading(true)
+        //     data.img = image;
+        //     axios.post('http://localhost:5000/letestdestinations', data)
+        //         .then(res=>{
+        //             reset();
+        //             setLoading(false);
+        //             message.success('Successfully submitted!');
+        //         })
+        //         .catch((error)=>{
+        //             reset();
+        //             setLoading(false);
+        //         })
+        // }
+        // else{
+        //     setError("Please upload a image!")
+        // }
+        console.log("data....", data);
     };
 
     return ( 
@@ -42,6 +65,8 @@ const AddTravelDestination = () => {
             <div className='container mt-5 flex'>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-1/2">
                     <label className='text-lg font-semibold mb-1'>Destination Image</label>
+                    {image ? <img src={image} alt="travel" className='w-48 h-44 travel-img-border mb-2 mt-1' />:null}
+                    {state.destiData.img && !image ? <img src={state.destiData.img} alt="travel" className='w-48 h-44 travel-img-border mb-2 mt-1' />:null}
                     <FileBase64
                         multiple={ false }
                         onDone={({base64})=>setImage(base64)} />
@@ -50,15 +75,11 @@ const AddTravelDestination = () => {
                             <label className='text-lg font-semibold mb-1'>From District</label>
                             {/* <input value={user.email} {...register("email")} className="p-3 border-2 border-blue-300 outline-none mb-3 w-full font-semibold" readOnly /> */}
                             <div className='flex items-center p-3 border-2 border-blue-300 outline-none mb-3 w-full'>
-                                <select  type="text" className="bg-transparent w-full appearance-none outline-none font-semibold " {...register("fromDistrict")} placeholder="From" required>
-                                    <option value="Dhaka">Dhaka</option>
-                                    <option value="Chittagong">Chittagong</option>
-                                    <option value="Barisal">Barisal</option>
-                                    <option value="Khulna">Khulna</option>
-                                    <option value="Mymensingh">Mymensingh</option>
-                                    <option value="Rajshahi">Rajshahi</option>
-                                    <option value="Rangpur">Rangpur</option>
-                                    <option value="Sylhet">Sylhet</option>
+                                <select defaultValue="chandan"  type="text" className="bg-transparent w-full appearance-none outline-none font-semibold " {...register("fromDistrict")} placeholder="From" required>
+                                    {fromDistrictData ? <option value={fromDistrictData}>{fromDistrictData}</option>:null}
+                                    {districts.map(district=>
+                                        district !== fromDistrictData ? (<option value={district}>{district}</option>):(null)
+                                    )}
                                 </select>
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -67,14 +88,10 @@ const AddTravelDestination = () => {
                             <label className='text-lg font-semibold mb-1'>To District</label>
                             <div className='flex items-center p-3 border-2 border-blue-300 outline-none mb-3 w-full'>
                                 <select  type="text" className="bg-transparent w-full appearance-none outline-none font-semibold" {...register("toDistrict")} placeholder="To" required>
-                                    <option value="Chittagong">Chittagong</option>
-                                    <option value="Dhaka">Dhaka</option>
-                                    <option value="Barisal">Barisal</option>
-                                    <option value="Khulna">Khulna</option>
-                                    <option value="Mymensingh">Mymensingh</option>
-                                    <option value="Rajshahi">Rajshahi</option>
-                                    <option value="Rangpur">Rangpur</option>
-                                    <option value="Sylhet">Sylhet</option>
+                                    {toDistrictData ? <option value={toDistrictData}>{toDistrictData}</option>:null}
+                                    {districts.map(district=>
+                                        district !== toDistrictData ? (<option value={district}>{district}</option>):(null)
+                                    )}
                                 </select>
                                 <i class="fas fa-angle-down"></i>
                             </div>
@@ -83,11 +100,11 @@ const AddTravelDestination = () => {
                     <div className='flex items-center w-11/12'>
                         <div className='flex flex-col w-1/2'>
                             <label className='text-lg font-semibold mb-1'>From Station</label>
-                            <input {...register("fromStation")} className="p-3 border-2 border-blue-300 outline-none mb-3 w-full font-semibold" placeholder='xyz station' required />
+                            <input defaultValue={fromStationData} {...register("fromStation")} className="p-3 border-2 border-blue-300 outline-none mb-3 w-full font-semibold" placeholder='xyz station' required />
                         </div>
                         <div className='flex flex-col w-1/2 ml-5'>
                             <label className='text-lg font-semibold mb-1'>To Station</label>
-                            <input  {...register("toStation")} required className="p-3 border-2 border-blue-300 outline-none mb-3 w-full font-semibold" placeholder='abc station' />
+                            <input defaultValue={toStationData} {...register("toStation")} required className="p-3 border-2 border-blue-300 outline-none mb-3 w-full font-semibold" placeholder='abc station' />
                         </div>
                     </div>
                     <div className='flex items-center w-11/12'>
@@ -95,16 +112,20 @@ const AddTravelDestination = () => {
                             <label className='text-lg font-semibold mb-1'>Travel Time</label>
                             <div className='flex items-center p-3 border-2 border-blue-300 outline-none mb-3 w-full'>
                                 <select  type="text" className="bg-transparent w-full appearance-none outline-none font-semibold" {...register("travelTime")} placeholder="Time" required>
-                                    <option value="Daily">Daily</option>
+                                    {/* <option value="Daily">Daily</option>
                                     <option value="Weekly">Weekly</option>
-                                    <option value="Vacation">Vacation</option>
+                                    <option value="Vacation">Vacation</option> */}
+                                    {travelTimeData ? <option value={travelTimeData}>{travelTimeData}</option>:null}
+                                    {times.map(time=>
+                                        time !== travelTimeData ? (<option value={time}>{time}</option>):(null)
+                                    )}
                                 </select>
                                 <i class="fas fa-angle-down"></i>
                             </div>
                         </div>
                         <div className='flex flex-col w-1/2 ml-5'>
                             <label className='text-lg font-semibold mb-1'>Price</label>
-                            <input  {...register("price")} required className="p-3 border-2 border-blue-300 outline-none mb-3 w-full font-semibold" placeholder='100..' />
+                            <input defaultValue={priceData}  {...register("price")} required className="p-3 border-2 border-blue-300 outline-none mb-3 w-full font-semibold" placeholder='100..' />
                         </div>
                     </div>
                     <div className='w-1/2 mx-auto mt-4'>

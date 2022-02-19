@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Spinner from '../../Shared/Spinner/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 const SingleTravelDestination = ({desti}) => {
     const {_id, img, fromDistrict, toDistrict, fromStation, toStation, travelTime, price} = desti;
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate();
 
     const handleDelete = ({fetchData}) =>{
         setLoading(true)
@@ -15,6 +17,10 @@ const SingleTravelDestination = ({desti}) => {
                 })
                 .catch((error)=>{
                 })
+    }
+
+    const handleUpdate = () =>{
+        navigate("/dashboard/addtraveldestination", {state:{pageTitle:"Update", destiData:desti}})
     }
     return ( 
         <>
@@ -46,7 +52,7 @@ const SingleTravelDestination = ({desti}) => {
                 
                 <div className='w-4/5 mx-auto flex justify-between mt-4 singleTravelCardBtn'>
                     <button class="noselect" onClick={handleDelete}><span class="text text-sm">Delete</span><span class="icon"><i class="fas fa-trash-alt text-white ml-2 text-sm"></i></span></button>
-                    <button class="update"><span class="text text-sm">Update</span><span class="icon"><i class="fas fa-highlighter text-white ml-2 text-sm"></i></span></button>
+                    <button class="update" onClick={handleUpdate}><span class="text text-sm">Update</span><span class="icon"><i class="fas fa-highlighter text-white ml-2 text-sm"></i></span></button>
                 </div>
             </div>}
         </>
