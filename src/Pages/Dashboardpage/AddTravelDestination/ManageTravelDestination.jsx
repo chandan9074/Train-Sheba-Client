@@ -7,19 +7,18 @@ const ManageTravelDestination = () => {
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate();
     useEffect(()=>{
-        const fetchData = () =>{
-            fetch("http://localhost:5000/letestdestinations")
-            .then(res=>res.json())
-            .then(data=> {
-                setLoading(false)
-                setDestinations(data)
-                console.log("shjfdjl")
-                
-            })
-        }
         fetchData();
-        
     })
+    const fetchData = () =>{
+        fetch("http://localhost:5000/letestdestinations")
+        .then(res=>res.json())
+        .then(data=> {
+            setLoading(false)
+            setDestinations(data)
+            console.log("shjfdjl")
+            
+        })
+    }
 
     const handleNavigate = () =>{
         navigate("/dashboard/addtraveldestination", {state:{pageTitle:"Add New"}})
@@ -36,7 +35,7 @@ const ManageTravelDestination = () => {
                     </div>
                 </div>
                 {
-                    destinations.map(desti => <SingleTravelDestination desti={desti} />)
+                    destinations.map(desti => <SingleTravelDestination desti={desti} fetchData={fetchData} />)
                 }
             </div>}
         </div>

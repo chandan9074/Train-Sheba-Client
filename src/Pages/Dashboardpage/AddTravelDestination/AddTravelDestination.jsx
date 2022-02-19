@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
 import Message from '../../Shared/Message/Message';
 import Spinner from '../../Shared/Spinner/Spinner';
+import { useLocation } from 'react-router';
 
 
 const AddTravelDestination = () => {
@@ -13,6 +14,7 @@ const AddTravelDestination = () => {
     const [image, setImage] = useState();
     const [loading, setLoading] = useState(false);
     const {user, error, setError} = useAuth();
+    const {state} = useLocation();
     const onSubmit = data => {
         if(image){
             setError("");
@@ -36,7 +38,7 @@ const AddTravelDestination = () => {
 
     return ( 
         <div className='container mb-24'>
-            <h1 className="text-2xl mt-5 border-l-4 border-gray-700 font-bold pl-2">Add New Travel Destination</h1>
+            <h1 className="text-2xl mt-5 border-l-4 border-gray-700 font-bold pl-2">{state.pageTitle} Travel Destination</h1>
             <div className='container mt-5 flex'>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-1/2">
                     <label className='text-lg font-semibold mb-1'>Destination Image</label>
