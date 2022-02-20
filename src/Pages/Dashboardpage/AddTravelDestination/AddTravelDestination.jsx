@@ -7,6 +7,7 @@ import useAuth from '../../../hooks/useAuth';
 import Message from '../../Shared/Message/Message';
 import Spinner from '../../Shared/Spinner/Spinner';
 import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddTravelDestination = () => {
@@ -15,6 +16,7 @@ const AddTravelDestination = () => {
     const [loading, setLoading] = useState(false);
     const {user, error, setError} = useAuth();
     const {state} = useLocation();
+    const navigate = useNavigate();
     const districts = ["Dhaka", "Chittagong", "Barisal", "Khulna", "Mymensingh", "Rajshahi", "Rangpur", "Sylhet"]
     const times = ["Daily", "Weekly", "Vacation"]
 
@@ -24,7 +26,8 @@ const AddTravelDestination = () => {
     let fromDistrictData = "";
     let toDistrictData = "";
     let travelTimeData = ""
-    // let imgData = "";
+    let imgData = "";
+    let idData = "";
     
     if(state.destiData){
         fromStationData = state.destiData.fromStation;
@@ -33,29 +36,50 @@ const AddTravelDestination = () => {
         fromDistrictData = state.destiData.fromDistrict;
         toDistrictData = state.destiData.toDistrict;
         travelTimeData = state.destiData.travelTime
-        // imgData = state.destiData.img;
+        imgData = state.destiData.img;
+        idData = state.destiData._id;
         // setImage(state.destiData.img)
     }
 
     const onSubmit = data => {
-        // if(image){
-        //     setError("");
-        //     setLoading(true)
-        //     data.img = image;
-        //     axios.post('http://localhost:5000/letestdestinations', data)
-        //         .then(res=>{
-        //             reset();
-        //             setLoading(false);
-        //             message.success('Successfully submitted!');
-        //         })
-        //         .catch((error)=>{
-        //             reset();
-        //             setLoading(false);
-        //         })
-        // }
-        // else{
-        //     setError("Please upload a image!")
-        // }
+        if(image || imgData){
+            setError("");
+            setLoading(true)
+            if(image){
+                data.img = image;
+            }
+            else{
+                data.img = imgData;
+            }
+            if(idData){
+                axios.put(`http://localhost:5000/letestdestinations/${idData}`, data)
+                    .then(res=>{
+                        reset();
+                        setLoading(false);
+                        message.success('Successfully submitted!');
+                        navigate("/dashboard/managetraveldestination");
+                    })
+                    .catch((error)=>{
+                        reset();
+                        setLoading(false);
+                    })
+            }
+            else{
+                axios.post('http://localhost:5000/letestdestinations', data)
+                    .then(res=>{
+                        reset();
+                        setLoading(false);
+                        message.success('Successfully submitted!');
+                    })
+                    .catch((error)=>{
+                        reset();
+                        setLoading(false);
+                    })
+            }
+        }
+        else{
+            setError("Please upload a image!")
+        }
         console.log("data....", data);
     };
 
@@ -66,7 +90,7 @@ const AddTravelDestination = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-1/2">
                     <label className='text-lg font-semibold mb-1'>Destination Image</label>
                     {image ? <img src={image} alt="travel" className='w-48 h-44 travel-img-border mb-2 mt-1' />:null}
-                    {state.destiData.img && !image ? <img src={state.destiData.img} alt="travel" className='w-48 h-44 travel-img-border mb-2 mt-1' />:null}
+                    {imgData && !image ? <img src={imgData} alt="travel" className='w-48 h-44 travel-img-border mb-2 mt-1' />:null}
                     <FileBase64
                         multiple={ false }
                         onDone={({base64})=>setImage(base64)} />
