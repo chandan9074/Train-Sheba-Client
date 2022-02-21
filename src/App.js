@@ -20,6 +20,7 @@ import AddReview from './Pages/Dashboardpage/AddReview/AddReview';
 import AddTravelDestination from './Pages/Dashboardpage/AddTravelDestination/AddTravelDestination';
 import AddNews from "./Pages/Dashboardpage/AddNews/AddNews";
 import ManageTravelDestination from "./Pages/Dashboardpage/AddTravelDestination/ManageTravelDestination";
+import ManageNews from "./Pages/Dashboardpage/AddNews/ManageNews";
 // import components
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} >
                 <Route path="addreview" element={<AddReview />} />
                 <Route path="addnews" element={<AddNews />} />
+                <Route path="managenews" element={<ManageNews />} />
                 <Route path="addtraveldestination" element={<AddTravelDestination />} />
                 <Route path="managetraveldestination" element={ <ManageTravelDestination />} />
               </Route>
