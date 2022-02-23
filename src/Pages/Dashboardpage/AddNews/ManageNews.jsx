@@ -5,7 +5,7 @@ import SingleNews from './SingleNews';
 
 const ManageNews = () => {
     const [news, setNews] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -15,12 +15,13 @@ const ManageNews = () => {
         fetch("http://localhost:5000/letestnews")
         .then(res=>res.json())
         .then(data=> {
+            setLoading(false)
             setNews(data)
         })
     }
 
     const handleNavigate = () =>{
-        navigate("/dashboard/addtraveldestination", {state:{pageTitle:"Add New"}})
+        navigate("/dashboard/addnews", {state:{pageTitle:"Add"}})
     }
 
     return ( 

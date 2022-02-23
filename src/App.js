@@ -21,6 +21,7 @@ import AddTravelDestination from './Pages/Dashboardpage/AddTravelDestination/Add
 import AddNews from "./Pages/Dashboardpage/AddNews/AddNews";
 import ManageTravelDestination from "./Pages/Dashboardpage/AddTravelDestination/ManageTravelDestination";
 import ManageNews from "./Pages/Dashboardpage/AddNews/ManageNews";
+import AllBookings from "./Pages/Dashboardpage/AllBookings/AllBoolings";
 // import components
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
                 <Route path="managenews" element={<ManageNews />} />
                 <Route path="addtraveldestination" element={<AddTravelDestination />} />
                 <Route path="managetraveldestination" element={ <ManageTravelDestination />} />
+                <Route path="allbookings" element={ <AllBookings />} />
               </Route>
               <Route exact path="/tickets" element={<Ticket />} />
               <Route exact path="/passengers" element={<Passengers />} />

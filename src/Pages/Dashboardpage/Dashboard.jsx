@@ -49,6 +49,7 @@ const Dashboard = () => {
                         <Link to="/dashboard/addreview" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Add Review</Link>
                     </div>
                     <div className='flex flex-col'>
+                        <Link to="/dashboard/allbookings" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> All Bookings</Link>
                         <Link to="/dashboard/managenews" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Manage News</Link>
                         <Link to="/dashboard/managetraveldestination" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Manage Travel Destination</Link>
                     </div>
