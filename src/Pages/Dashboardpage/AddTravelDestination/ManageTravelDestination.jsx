@@ -8,7 +8,7 @@ const ManageTravelDestination = () => {
     const navigate = useNavigate();
     useEffect(()=>{
         fetchData();
-    })
+    }, [])
     const fetchData = () =>{
         fetch("http://localhost:5000/letestdestinations")
         .then(res=>res.json())

@@ -1,24 +1,31 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Spinner from '../../Shared/Spinner/Spinner';
-import SingleBookings from './SingleBookings';
+import SingleBookings from '../AllBookings/SingleBookings';
+import useAuth from '../../../hooks/useAuth';
 
-const AllBookings = () => {
+const MyBookings = () => {
 
     const [bookings, setBookings ] = useState([]);
     const [loading, setLoading] = useState(true)
+    const {user} = useAuth();
     
     useEffect(()=>{
         fetchData();
     }, [])
 
     const fetchData = () =>{
-        fetch("http://localhost:5000/user-train-bookings")
-        .then(res=>res.json())
-        .then(data=> {
-            setLoading(false)
-            setBookings(data)
-        })
+        const data = {email:user.email};
+        // console.log(data)
+        axios.post(`http://localhost:5000/user-train-bookings/my-bookings/`, data)
+                .then(res=>{
+                    setLoading(false)
+                    setBookings(res.data)
+                })
+                .catch((error)=>{
+                })
     }
+
     return ( 
         <div className='container mb-40'>
             <h1 className="text-2xl mt-5 border-l-4 border-gray-700 font-bold pl-2">All Bookings</h1>
@@ -33,4 +40,4 @@ const AllBookings = () => {
      );
 }
  
-export default AllBookings;
+export default MyBookings;

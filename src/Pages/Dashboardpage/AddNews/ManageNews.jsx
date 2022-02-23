@@ -10,7 +10,7 @@ const ManageNews = () => {
 
     useEffect(()=>{
         fetchData();
-    })
+    }, [])
     const fetchData = () =>{
         fetch("http://localhost:5000/letestnews")
         .then(res=>res.json())

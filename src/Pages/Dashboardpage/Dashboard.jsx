@@ -45,7 +45,7 @@ const Dashboard = () => {
                     </div>
                     <hr className='w-full text-gray-400' />
                     <div className='flex flex-col'>
-                        <Link to="/tickets" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> My Bookings</Link>
+                        <Link to="/dashboard/mybookings" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> My Bookings</Link>
                         <Link to="/dashboard/addreview" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Add Review</Link>
                     </div>
                     <div className='flex flex-col'>
