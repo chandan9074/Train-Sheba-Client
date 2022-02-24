@@ -5,6 +5,8 @@ import Message from '../../Shared/Message/Message';
 import Spinner from '../../Shared/Spinner/Spinner';
 import { useLocation } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { message } from 'antd';
 
 const AddTrain = () => {
     const { register, handleSubmit, reset } = useForm();
@@ -43,18 +45,48 @@ const AddTrain = () => {
         arrivalTimeData = state.trainData.araivelTime;
         departureTimeData = state.trainData.departureTime;
         idData = state.trainData._id;
-        // setImage(state.destiData.img)
     }
 
     const onSubmit = data => {
         console.log("data....", data);
+        setLoading(true);
+        if (idData){
+            axios.put(`http://localhost:5000/train/${idData}`, data)
+                    .then(res=>{
+                        reset();
+                        setLoading(false);
+                        message.success('Successfully submitted!');
+                        navigate("/dashboard/managetrains");
+                    })
+                    .catch((error)=>{
+                        reset();
+                        setLoading(false);
+                    })
+
+        }
+        else{
+            axios.post('http://localhost:5000/train', data)
+                    .then(res=>{
+                        reset();
+                        setLoading(false);
+                        message.success('Successfully submitted!');
+                    })
+                    .catch((error)=>{
+                        reset();
+                        setLoading(false);
+                    })
+        }
     }
     return ( 
         <div className='container mb-24'>
             <h1 className="text-2xl mt-5 border-l-4 border-gray-700 font-bold pl-2"> {state.pageTitle} Trains</h1>
             <div className='container mt-4 flex'>
                 <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col w-1/2">
-                    <div className='flex items-center w-11/12 mt-3'>
+                    <div className='w-11/12 mt-3'>
+                        <label className='text-lg font-semibold mb-1'>Train Name</label>
+                        <input defaultValue={trainNameData} {...register("trainName")} className="p-3 border-2 border-blue-300 outline-none mb-3 w-full font-semibold" placeholder='Enter train name...' required />
+                    </div>
+                    <div className='flex items-center w-11/12'>
                         <div className='flex flex-col w-1/2'>
                             <label className='text-lg font-semibold mb-1'>From District</label>
                             <div className='flex items-center p-3 border-2 border-blue-300 outline-none mb-3 w-full'>
