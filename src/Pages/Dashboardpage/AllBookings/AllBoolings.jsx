@@ -20,7 +20,7 @@ const AllBookings = () => {
         })
     }
     return ( 
-        <div className='container mb-40'>
+        <div className='container mb-36'>
             <h1 className="text-2xl mt-5 border-l-4 border-gray-700 font-bold pl-2">All Bookings</h1>
             {loading ? <div className='flex justify-center'><Spinner /></div>:
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mt-4'>

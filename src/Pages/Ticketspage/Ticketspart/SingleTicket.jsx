@@ -7,7 +7,7 @@ const SingleTicket = ({train, state, searchResult, departure}) => {
 
     const {_id, classname, fromDistrict, fromStation, toDistrict, toStation, trainName, sit, availableSit, araivelTime, departureTime, travelTime, available, price} = train;
     const navigate = useNavigate();
-    const [sitResult, setSitResult] = useState(60);
+    const [sitResult, setSitResult] = useState(sit);
 
     useEffect(()=>{
         if (searchResult.length !== 0){
@@ -16,7 +16,7 @@ const SingleTicket = ({train, state, searchResult, departure}) => {
             })[0];
             setSitResult(t.availableSit);
         }
-    })
+    }, [])
 
     const handleNext = () =>{
         navigate("/passengers", {state:{train:train, userData:state, sitResult:sitResult}});

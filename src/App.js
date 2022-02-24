@@ -23,6 +23,8 @@ import ManageTravelDestination from "./Pages/Dashboardpage/AddTravelDestination/
 import ManageNews from "./Pages/Dashboardpage/AddNews/ManageNews";
 import AllBookings from "./Pages/Dashboardpage/AllBookings/AllBoolings";
 import MyBookings from "./Pages/Dashboardpage/MyBookings/MyBookings";
+import ManageTrains from './Pages/Dashboardpage/Trains/ManageTrains';
+import AddTrain from "./Pages/Dashboardpage/Trains/AddTrain";
 // import components
 
 function App() {
@@ -48,6 +50,9 @@ function App() {
                 <Route path="managetraveldestination" element={ <ManageTravelDestination />} />
                 <Route path="allbookings" element={ <AllBookings />} />
                 <Route path="mybookings" element={ <MyBookings />} />
+                <Route path="managetrains" element={ <ManageTrains />} />
+                <Route path="addtrain" element={ <AddTrain />} />
+                
               </Route>
               <Route exact path="/tickets" element={<Ticket />} />
               <Route exact path="/passengers" element={<Passengers />} />

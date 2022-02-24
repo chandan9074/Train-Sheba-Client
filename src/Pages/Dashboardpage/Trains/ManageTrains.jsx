@@ -1,32 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import Spinner from '../../Shared/Spinner/Spinner';
 import { useNavigate } from 'react-router-dom';
-import SingleNews from './SingleNews';
+import Spinner from '../../Shared/Spinner/Spinner';
+import SingleTrains from './SingleTrains';
 
-const ManageNews = () => {
-    const [news, setNews] = useState([])
+const ManageTrains = () => {
+    const [trains, setTrains] = useState([])
     const [loading, setLoading] = useState(true)
     const navigate = useNavigate();
-
     useEffect(()=>{
         fetchData();
     }, [])
     const fetchData = () =>{
-        fetch("http://localhost:5000/letestnews")
+        fetch("http://localhost:5000/trains")
         .then(res=>res.json())
         .then(data=> {
             setLoading(false)
-            setNews(data)
+            setTrains(data)
         })
     }
 
     const handleNavigate = () =>{
-        navigate("/dashboard/addnews", {state:{pageTitle:"Add"}})
+        navigate("/dashboard/addtrain", {state:{pageTitle:"Add"}})
     }
 
     return ( 
-        <div className='container mb-40'>
-            <h1 className="text-2xl mt-5 border-l-4 border-gray-700 font-bold pl-2">News</h1>
+        <div className='container mb-36'>
+            <h1 className="text-2xl mt-5 border-l-4 border-gray-700 font-bold pl-2">Trains</h1>
             {loading ? <div className='flex justify-center'><Spinner /></div>:
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className='flex justify-center items-center'>
@@ -35,11 +34,11 @@ const ManageNews = () => {
                     </div>
                 </div>
                 {
-                    news.map(newsData => <SingleNews newsData={newsData} fetchData={fetchData} />)
+                    trains.map(train => <SingleTrains train={train} fetchData={fetchData} />)
                 }
             </div>}
         </div>
      );
 }
  
-export default ManageNews;
+export default ManageTrains;

@@ -11,10 +11,12 @@ import {
   Routes
 } from "react-router-dom";
 import Footer from '../Shared/Footer/Footer';
+import useAuth from '../../hooks/useAuth';
 
 const Dashboard = () => {
     const [visible, setVisible] = useState(false);
     // let {url, path} = useMatch("/dashboard");
+    const {admin} = useAuth();
     const showDrawer = () => {
     setVisible(true);
   };
@@ -43,16 +45,19 @@ const Dashboard = () => {
                         <Link to="/dashboard" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</Link>
                         <Link to="/tickets" className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Booking</Link>
                     </div>
-                    <hr className='w-full text-gray-400' />
-                    <div className='flex flex-col'>
-                        <Link to="/dashboard/mybookings" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> My Bookings</Link>
-                        <Link to="/dashboard/addreview" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Add Review</Link>
-                    </div>
+                    {/* <hr className='w-full text-gray-400' /> */}
+                    {admin ? 
                     <div className='flex flex-col'>
                         <Link to="/dashboard/allbookings" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> All Bookings</Link>
                         <Link to="/dashboard/managenews" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Manage News</Link>
                         <Link to="/dashboard/managetraveldestination" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Manage Travel Destination</Link>
+                        <Link to="/dashboard/managetrains" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Manage Trains</Link>
+                    </div>:
+                    <div className='flex flex-col'>
+                        <Link to="/dashboard/mybookings" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> My Bookings</Link>
+                        <Link to="/dashboard/addreview" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Add Review</Link>
                     </div>
+                    }
                 </Drawer>
             </div>    
             <Outlet />

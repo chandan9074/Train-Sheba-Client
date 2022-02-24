@@ -112,10 +112,10 @@ const useFirebase = () =>{
 
     useEffect(() => {
         let isAdmin = false;
-        fetch(`https://fast-island-99199.herokuapp.com/users/${user.email}`)
+        fetch(`http://localhost:5000/users/${user.email}`)
             .then(res => res.json())
             .then(data => {
-                if(data?.role === "admin"){
+                if(data?.admin === true){
                     isAdmin = true
                 }
                 setAdmin(isAdmin);
