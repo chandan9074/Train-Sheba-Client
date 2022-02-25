@@ -29,7 +29,7 @@ const Review = () => {
             // const newArray = data.slice(-6);
             setReview(data)
         })
-    })
+    }, [])
     return ( 
         <div className="">
         <div className="container pt-16 pb-20 ">

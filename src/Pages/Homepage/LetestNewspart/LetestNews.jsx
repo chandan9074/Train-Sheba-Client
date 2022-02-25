@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import SingleLetestNews from './SingleLetestNews';
 
 const LetestNews = () => {
-    const sample = [1, 2, 3, 4];
+
     const [news, setNews] = useState([])
     useEffect(()=>{
         fetch("http://localhost:5000/letestnews")
@@ -11,7 +11,7 @@ const LetestNews = () => {
             const newArray = data.slice(-6);
             setNews(newArray)
         })
-    })
+    }, [])
 
     return ( 
         <div className="bg-gray-100">
