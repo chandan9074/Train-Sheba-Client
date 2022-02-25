@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Navigation from '../../Shared/Navigation/Navigation';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import SingleLetestNews from './SingleLetestNews';
 import Spinner from '../../Shared/Spinner/Spinner';
 
@@ -51,12 +51,12 @@ const DetailsSingleLetestNews = () => {
             <div className="pt-16 pb-20 container">
                 <div className="flex justify-between items-center mb-5">
                     <h1 className="text-2xl mt-3 border-l-4 border-gray-700 font-bold pl-2">Other News</h1>
-                    <button class="learn-more">
+                    <Link to="/allnews" class="learn-more">
                         <span aria-hidden="true" class="circle">
                         <span class="icon arrow"></span>
                         </span>
                         <span class="button-text">Older News</span>         
-                    </button>
+                    </Link>
                 </div>
                 {loading ? <div className='w-full flex justify-center'><Spinner /></div>:
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
