@@ -52,6 +52,7 @@ const Dashboard = () => {
                         <Link to="/dashboard/managenews" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Manage News</Link>
                         <Link to="/dashboard/managetraveldestination" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Manage Travel Destination</Link>
                         <Link to="/dashboard/managetrains" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Manage Trains</Link>
+                        <Link to="/dashboard/makeadmin" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> Make Admin</Link>
                     </div>:
                     <div className='flex flex-col'>
                         <Link to="/dashboard/mybookings" onClick={onClose} className="nav-btn text-base font-semibold py-2"><i class="fas fa-archive mr-2"></i> My Bookings</Link>

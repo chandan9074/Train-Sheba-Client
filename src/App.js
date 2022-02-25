@@ -25,6 +25,7 @@ import AllBookings from "./Pages/Dashboardpage/AllBookings/AllBoolings";
 import MyBookings from "./Pages/Dashboardpage/MyBookings/MyBookings";
 import ManageTrains from './Pages/Dashboardpage/Trains/ManageTrains';
 import AddTrain from "./Pages/Dashboardpage/Trains/AddTrain";
+import MakeAdmin from './Pages/Dashboardpage/MakeAdmin/MakeAdmin';
 // import components
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
                 <Route path="mybookings" element={ <MyBookings />} />
                 <Route path="managetrains" element={ <ManageTrains />} />
                 <Route path="addtrain" element={ <AddTrain />} />
+                <Route path="makeadmin" element={ <MakeAdmin />} />
                 
               </Route>
               <Route exact path="/tickets" element={<Ticket />} />
