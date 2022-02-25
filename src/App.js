@@ -28,6 +28,7 @@ import AddTrain from "./Pages/Dashboardpage/Trains/AddTrain";
 import MakeAdmin from './Pages/Dashboardpage/MakeAdmin/MakeAdmin';
 import DetailsSingleLetestNews from "./Pages/Homepage/LetestNewspart/DetailsSingleLetestNews";
 import AllNews from "./Pages/Homepage/LetestNewspart/AllNews";
+import AllDestinations from "./Pages/Homepage/Servicepage/AllDestinations";
 // import components
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
                 <Route path="makeadmin" element={ <MakeAdmin />} />
                 
               </Route>
+              <Route exact path="/alldestinations" element={<AllDestinations />} />
               <Route exact path="/allnews" element={<AllNews />} />
               <Route exact path="/news" element={<DetailsSingleLetestNews />} />
               <Route exact path="/tickets" element={<Ticket />} />
