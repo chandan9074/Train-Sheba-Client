@@ -11,29 +11,41 @@ import Footer from '../../Shared/Footer/Footer';
 
 const Ticket = () => {
     const {state} = useLocation();
-    // const loop = [1, 2, 3, 4]
     const [trains, setTrains] = useState([]);
     const [searchResult, setSearchResult] = useState([]);
-
+    const [search, setSearch] = useState(false);
+    const [trainData, setTrainData] = useState([]);
     const [recentTickets, setRecentTickets] = useState([]);
-    // console.log(state)
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
 
     useEffect(()=>{
-
         fetch("http://localhost:5000/trains")
         .then(res=>res.json())
         .then(data=> {
+            if(trains.length===0){
+                while(trains.length !== 2){
+                        let number = data[Math.floor(Math.random() * data.length)];
+                        if(trains.indexOf(number) == -1)  
+                        {
+                            trains.push(number);
+                        }
+                    }
+            }
+
             const newArray = data.slice(-6);
             setRecentTickets(newArray)
-            // setTrains(newArray);
         })
-        // console.log(state)
 
         if(state){
             const from = state.from;
             const to = state.to;
             const classname = state.class;
             const departure = state.departure;
+            setSearch(true)
     
             const bodyData = {from, to, classname};
     
@@ -65,7 +77,22 @@ const Ticket = () => {
                 console.log("search result", res);
             })
         }
-    }, [state])
+        else{
+            const Data = {today};
+    
+            fetch("http://localhost:5000/all/search-train-tickets-manage", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify(Data)
+            })
+            .then(res=>res.json())
+            .then(res=>{
+                setSearchResult(res);
+            })
+        }
+    }, [state, trains])
     
     
     return ( 
@@ -111,7 +138,9 @@ const Ticket = () => {
                         <div className='w-3/4 mt-5 ml-5'>
                             <div className='w-full'>
                                 <div className='flex justify-between'>
-                                    <p className='m-0 font-semibold text-gray-500'>{trains.length} tickets found</p>
+                                    {state?.departure ?
+                                    <p className='m-0 font-semibold text-gray-500'>{trains.length} tickets found</p>:
+                                    <p className='m-0 font-semibold text-gray-500'>Recomended todays tickets</p>}
                                     <div className='flex'>
                                         <p className='mb-0 font-semibold text-gray-500 flex items-center cursor-pointer mr-5'><span>Short by time</span><span className='ml-2'><i class="fas fa-sort-down"></i></span></p>
                                         <p className='m-0 font-semibold text-gray-500 cursor-pointer'><span>Show populer 5 tickets </span><span className='ml-2'><i class="fas fa-sort-down"></i></span></p>
@@ -120,7 +149,11 @@ const Ticket = () => {
                             </div>
                             {trains.map(train=>(
                                 <div className='mt-3'>
-                                    <SingleTicket train={train} searchResult={searchResult} state={state} departure={state.departure} />
+                                    {search ? 
+                                    <SingleTicket train={train} searchResult={searchResult} state={state} departure={state?.departure} />
+                                    :
+                                    <SingleTicket train={train} searchResult={searchResult} state={state} departure={today} />
+                                    }
                                 </div>
                             ))}
                         </div>
